@@ -11,7 +11,7 @@ export type OutputSize = 'compact' | 'full'
 export type DataType = 'json' | 'csv'
 
 export interface WithAVOutputSize { outputSize?: OutputSize; }
-export interface WithAVDataType { dataType?: DataType; }
+export interface WithAVDataType { dataType?: "json"; }
 export interface WithAVAdjusted { adjusted?: boolean; }
 
 export interface AlphaVantageQuery {
