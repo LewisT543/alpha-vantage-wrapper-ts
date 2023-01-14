@@ -1,7 +1,8 @@
 {
-  "name": "alpha-vantage-wrapper-ts",
+  "name": "easy-alpha-v-ts",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/src/urlBuilder.js",
+  "types": "dist/src/urlBuilder.d.ts",
   "license": "MIT",
   "devDependencies": {
     "@jest/globals": "^29.3.1",
