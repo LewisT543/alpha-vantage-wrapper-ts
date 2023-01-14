@@ -4,13 +4,22 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "typescript": "^4.9.4"
-  },
-  "dependencies": {
+    "typescript": "^4.9.4",
+    "@types/jest": "^29.2.5",
     "@types/node": "^18.11.18",
+    "jest": "^29.3.1",
+    "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LewisT543/alpha-vantage-wrapper-ts.git"
+  },
   "scripts": {
-    "start": "ts-node ./src/index.ts"
-  }
+    "test": "jest --config jestconfig.json",
+    "build": "npx tsc"
+  },
+  "files": [
+    "lib/**/*"
+  ]
 }
