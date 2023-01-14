@@ -1,0 +1,16 @@
+{
+  "name": "alpha-vantage-wrapper-ts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "@types/node": "^18.11.18",
+    "ts-node": "^10.9.1"
+  },
+  "scripts": {
+    "start": "ts-node ./src/index.ts"
+  }
+}
