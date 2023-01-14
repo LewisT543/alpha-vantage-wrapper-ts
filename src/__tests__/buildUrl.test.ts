@@ -1,5 +1,5 @@
 import {queryToUrl} from "../urlBuilder";
-import {TEST_QUERIES} from "../testQueries";
+import {TEST_QUERIES} from "./exampleQueries";
 
 
 describe('urlbuilder should correctly form urls from queries', () => {

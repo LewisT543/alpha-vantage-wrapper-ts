@@ -1,6 +1,6 @@
-import {Query} from "../types/query";
-import {AlphaVantageQuery} from "../types/alphavantage/queries/avQuery.types";
-import {API_BASE_URLS} from "../types/constants";
+import {Query} from "./types/query";
+import {AlphaVantageQuery} from "./types/alphavantage/queries/avQuery.types";
+import {API_BASE_URLS} from "./types/constants";
 
 export interface UrlQueryBuilderParams {
   baseUrl: string;

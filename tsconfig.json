@@ -7,6 +7,8 @@
     "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
     "strict": true,                                      /* Enable all strict type-checking options. */
   },
-  "include": [ "src", "types"],
+  "include": [
+    "src/**/*",
+  ],
   "exclude": [ "node_modules", "**/__tests__/*"]
 }
