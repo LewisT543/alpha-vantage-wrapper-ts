@@ -1,7 +1,7 @@
 {
   "name": "easy-alpha-v-ts",
-  "version": "1.0.1",
-  "main": "dist/src/urlBuilder.js",
+  "version": "1.0.2",
+  "main": "dist/src/index.js",
   "types": "dist/src/urlBuilder.d.ts",
   "license": "MIT",
   "devDependencies": {
@@ -23,6 +23,6 @@
     "build": "npx tsc"
   },
   "files": [
-    "dist/**/*"
+    "/dist"
   ]
 }
