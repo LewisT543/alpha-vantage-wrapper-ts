@@ -1,1 +1,1 @@
-ALPHA VANTAGE STOCKS API WRAPPER WRITTEN IN TYPESCRIPT
+Typescript wrapper for AlphaVantage Financial Data API
