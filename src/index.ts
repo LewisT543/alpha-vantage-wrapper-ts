@@ -1,4 +1,4 @@
-export { queryToUrl } from './urlBuilder'
+export { queryToAVUrl } from './queryToAvUrl'
 export * from './types/alphavantage/queries/stockQueries.types'
 export * from './types/alphavantage/queries/alphaIntelQueries.types'
 export * from './types/alphavantage/queries/commoditiesQueries.types'
