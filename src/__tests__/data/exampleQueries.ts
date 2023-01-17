@@ -1,4 +1,4 @@
-import {TimeSeriesDailyAdjustedQuery} from "../types/alphavantage/queries/stockQueries.types";
+import {TimeSeriesDailyAdjustedQuery} from "../../types/alphavantage/queries/stockQueries.types";
 import {
   AlphaVantageCommoditiesFn,
   AlphaVantageCryptoFn,
@@ -7,13 +7,14 @@ import {
   AlphaVantageFundamentalsFnEnum,
   AlphaVantageIntelFnEnum,
   AlphaVantageStockFnEnum
-} from "../types/enums";
-import {FundamentalsBalanceSheetQuery} from "../types/alphavantage/queries/fundamentalsQueries.types";
-import {AlphaIntelNewsQuery} from "../types/alphavantage/queries/alphaIntelQueries.types";
-import {ForexDailyQuery} from "../types/alphavantage/queries/forexQueries.types";
-import {CommoditiesAluminiumQuery} from "../types/alphavantage/queries/commoditiesQueries.types";
-import {EconIndCPIQuery} from "../types/alphavantage/queries/econIndQueries.types";
-import {CryptoDailyQuery} from "../types/alphavantage/queries/cryptoQueries.types";
+} from "../../types/enums";
+import {FundamentalsBalanceSheetQuery} from "../../types/alphavantage/queries/fundamentalsQueries.types";
+import {AlphaIntelNewsQuery} from "../../types/alphavantage/queries/alphaIntelQueries.types";
+import {ForexDailyQuery} from "../../types/alphavantage/queries/forexQueries.types";
+import {CommoditiesAluminiumQuery} from "../../types/alphavantage/queries/commoditiesQueries.types";
+import {EconIndCPIQuery} from "../../types/alphavantage/queries/econIndQueries.types";
+import {CryptoDailyQuery} from "../../types/alphavantage/queries/cryptoQueries.types";
+import {fundBExampleResponse, imbAnnualReportsExpected} from "./moreData";
 
 const timeSeriesDailyAdjustedTestQuery: TimeSeriesDailyAdjustedQuery = {
   fn: AlphaVantageStockFnEnum.TIME_SERIES_DAILY_ADJUSTED,
@@ -63,6 +64,6 @@ export const TEST_QUERIES = {
   "econIndCPITestQuery": { query: econIndCPITestQuery, output: 'https://www.alphavantage.co/query?function=CPI&interval=monthly&apikey=demo' },
 }
 
-
-
-
+export const TEST_RESPONSES = {
+  "ibmBalanceSheets": { response: fundBExampleResponse, output: imbAnnualReportsExpected }
+}

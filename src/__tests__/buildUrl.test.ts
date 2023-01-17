@@ -1,5 +1,5 @@
 import {queryToAVUrl} from "../queryToAvUrl";
-import {TEST_QUERIES} from "./exampleQueries";
+import {TEST_QUERIES} from "./data/exampleQueries";
 
 
 describe('urlbuilder should correctly form urls from queries', () => {
