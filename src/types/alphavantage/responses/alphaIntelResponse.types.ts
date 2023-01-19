@@ -3,10 +3,10 @@ export interface NewsResponse {
   items:                      string;
   sentiment_score_definition: string;
   relevance_score_definition: string;
-  feed:                       NewsResponseFeed[];
+  feed:                       NewsFeedResponse[];
 }
 
-export interface NewsResponseFeed {
+export interface NewsFeedResponse {
   title:                   string;
   url:                     string;
   time_published:          string;
@@ -50,9 +50,9 @@ export interface PortfoliosResponse {
 export interface PortfolioRanking {
   rank:              string;
   portfolio:         SinglePortfolio[];
-  measurement_start: Date;
+  measurement_start: string;
   start_value_usd:   string;
-  measurement_end:   Date;
+  measurement_end:   string;
   end_value_usd:     string;
   percent_gain:      string;
 }

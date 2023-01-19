@@ -5,10 +5,10 @@ export interface EconIndResponse {
   name:     string;
   interval: string;
   unit:     string;
-  data:     EconIndDatum[];
+  data:     EconIndResponseDatum[];
 }
 
-export interface EconIndDatum {
-  date:  Date;
+export interface EconIndResponseDatum {
+  date:  string;
   value: string;
 }

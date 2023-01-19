@@ -1,29 +1,32 @@
 import {CurrencyExchangeResponse} from "./avResponse.types";
+import {AVTimeSeriesIntervalEnum} from "../../enums";
 
+export type AVCryptoLongTermResponse = CryptoDailyResponse | CryptoWeeklyResponse | CryptoMonthlyResponse
 export type AVCryptoIntradayResponse = CryptoIntradayResponse1Min | CryptoIntradayResponse5Min | CryptoIntradayResponse15Min | CryptoIntradayResponse30Min | CryptoIntradayResponse60Min
-export type AVCryptoResponse = CurrencyExchangeResponse | AVCryptoIntradayResponse | CryptoDailyResponse | CryptoWeeklyResponse | CryptoMonthlyResponse
+export type AVCryptoResponse = CurrencyExchangeResponse | AVCryptoIntradayResponse | AVCryptoLongTermResponse
 
-interface WithCryptoIntradayMetaData { "Meta Data": CryptoIntradayMetaData; }
+interface WithCryptoIntradayMetaData { "Meta Data": CryptoIntradayMetaDataResponse; }
 
-export interface CryptoIntradayResponse1Min extends WithCryptoIntradayMetaData { "Time Series Crypto (1min)": { [key: string]: CryptoOHLCVData }; }
-export interface CryptoIntradayResponse5Min extends WithCryptoIntradayMetaData { "Time Series Crypto (5min)": { [key: string]: CryptoOHLCVData }; }
-export interface CryptoIntradayResponse15Min extends WithCryptoIntradayMetaData { "Time Series Crypto (15min)": { [key: string]: CryptoOHLCVData }; }
-export interface CryptoIntradayResponse30Min extends WithCryptoIntradayMetaData { "Time Series Crypto (30min)": { [key: string]: CryptoOHLCVData }; }
-export interface CryptoIntradayResponse60Min extends WithCryptoIntradayMetaData { "Time Series Crypto (60min)": { [key: string]: CryptoOHLCVData }; }
+export type CryptoOHLCVResponseObjects = { [key: string]: CryptoOHLCVResponse };
+export interface CryptoIntradayResponse1Min extends WithCryptoIntradayMetaData { "Time Series Crypto (1min)": CryptoOHLCVResponseObjects; }
+export interface CryptoIntradayResponse5Min extends WithCryptoIntradayMetaData { "Time Series Crypto (5min)": CryptoOHLCVResponseObjects; }
+export interface CryptoIntradayResponse15Min extends WithCryptoIntradayMetaData { "Time Series Crypto (15min)": CryptoOHLCVResponseObjects; }
+export interface CryptoIntradayResponse30Min extends WithCryptoIntradayMetaData { "Time Series Crypto (30min)": CryptoOHLCVResponseObjects; }
+export interface CryptoIntradayResponse60Min extends WithCryptoIntradayMetaData { "Time Series Crypto (60min)": CryptoOHLCVResponseObjects; }
 
-export interface CryptoIntradayMetaData {
+export interface CryptoIntradayMetaDataResponse {
   "1. Information":           string;
   "2. Digital Currency Code": string;
   "3. Digital Currency Name": string;
   "4. Market Code":           string;
   "5. Market Name":           string;
-  "6. Last Refreshed":        Date;
-  "7. Interval":              string;
+  "6. Last Refreshed":        string;
+  "7. Interval":              AVTimeSeriesIntervalEnum;
   "8. Output Size":           string;
   "9. Time Zone":             string;
 }
 
-export interface CryptoOHLCVData {
+export interface CryptoOHLCVResponse {
   "1. open":  string;
   "2. high":  string;
   "3. low":   string;
@@ -31,22 +34,23 @@ export interface CryptoOHLCVData {
   "5. volume": number;
 }
 
-interface WithLongtermMetaData { "Meta Data": CryptoLongtermMetaData; }
-export interface CryptoDailyResponse extends WithLongtermMetaData { "Time Series (Digital Currency Daily)": { [key: string]: CryptoDoubleOHLCVData }; }
-export interface CryptoWeeklyResponse extends WithLongtermMetaData  { "Time Series (Digital Currency Weekly)": { [key: string]: CryptoDoubleOHLCVData }; }
-export interface CryptoMonthlyResponse extends WithLongtermMetaData { "Time Series (Digital Currency Monthly)": { [key: string]: CryptoDoubleOHLCVData }; }
+export type CryptoDoubleOHLCVResponseObjects = { [key: string]: CryptoDoubleOHLCVResponse };
+interface WithLongtermMetaData { "Meta Data": CryptoLongtermMetaDataResponse; }
+export interface CryptoDailyResponse extends WithLongtermMetaData { "Time Series (Digital Currency Daily)": CryptoDoubleOHLCVResponseObjects }
+export interface CryptoWeeklyResponse extends WithLongtermMetaData  { "Time Series (Digital Currency Weekly)": CryptoDoubleOHLCVResponseObjects }
+export interface CryptoMonthlyResponse extends WithLongtermMetaData { "Time Series (Digital Currency Monthly)": CryptoDoubleOHLCVResponseObjects }
 
-export interface CryptoLongtermMetaData {
+export interface CryptoLongtermMetaDataResponse {
   "1. Information":           string;
   "2. Digital Currency Code": string;
   "3. Digital Currency Name": string;
   "4. Market Code":           string;
   "5. Market Name":           string;
-  "6. Last Refreshed":        Date;
+  "6. Last Refreshed":        string;
   "7. Time Zone":             string;
 }
 
-export interface CryptoDoubleOHLCVData {
+export interface CryptoDoubleOHLCVResponse {
   "1a. open (CNY)":      string;
   "1b. open (USD)":      string;
   "2a. high (CNY)":      string;

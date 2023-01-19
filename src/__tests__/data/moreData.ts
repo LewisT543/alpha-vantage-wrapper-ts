@@ -1,4 +1,14 @@
-export const fundBExampleResponse = {
+import {AVResponse} from "../../types/alphavantage/responses/avResponse.types";
+import {BalanceSheetResponse} from "../../types/alphavantage/responses/fundamentalsResponse.types";
+import {BalanceSheetData} from "../../types/alphavantage/data/fundamentalsData.types";
+
+// 1: Return symbol as symbol
+// 2: Map over annual reports
+  // 3: Map over properties of reports returning a new object with the same old keys
+// 4: Map over quarterly reports
+  // 5: Map over properties of reports returning a new object with the same old keys
+// 6: Return new AVData object
+export const fundBExampleResponse: BalanceSheetResponse = {
   "symbol": "IBM",
   "annualReports": [
     {
@@ -85,12 +95,90 @@ export const fundBExampleResponse = {
     },
   ]
 }
-
-export const imbAnnualReportsExpected = {
+export const imbAnnualReportsExpected2: BalanceSheetData = {} as BalanceSheetData
+export const imbAnnualReportsExpected: BalanceSheetData = {
   "annualReports": [
-    {"accumulatedDepreciationAmortizationPPE": 14390000000, "capitalLeaseObligations": 63000000, "cashAndCashEquivalentsAtCarryingValue": 6650000000, "cashAndShortTermInvestments": 6650000000, "commonStock": 57319000000, "commonStockSharesOutstanding": 898068600, "currentAccountsPayable": 3955000000, "currentDebt": 13551000000, "currentLongTermDebt": 6728000000, "currentNetReceivables": 14977000000, "deferredRevenue": 16095000000, "fiscalDateEnding": "2021-12-31", "goodwill": 55643000000, "intangibleAssets": 68154000000, "intangibleAssetsExcludingGoodwill": 12511000000, "inventory": 1649000000, "investments": 199000000, "longTermDebt": 56193000000, "longTermDebtNoncurrent": 44917000000, "longTermInvestments": 159000000, "otherCurrentAssets": 5663000000, "otherCurrentLiabilities": 9386000000, "otherNonCurrentAssets": 0, "otherNonCurrentLiabilities": 13996000000, "propertyPlantEquipment": 5694000000, "reportedCurrency": "USD", "retainedEarnings": 154209000000, "shortLongTermDebtTotal": 110496000000, "shortTermDebt": 6787000000, "shortTermInvestments": 600000000, "totalAssets": 132001000000, "totalCurrentAssets": 29539000000, "totalCurrentLiabilities": 33619000000, "totalLiabilities": 113005000000, "totalNonCurrentAssets": 101786000000, "totalNonCurrentLiabilities": 90188000000, "totalShareholderEquity": 18901000000, "treasuryStock": 169392000000}],
+    {
+      "accumulatedDepreciationAmortizationPPE": 14390000000,
+      "capitalLeaseObligations": 63000000,
+      "cashAndCashEquivalentsAtCarryingValue": 6650000000,
+      "cashAndShortTermInvestments": 6650000000,
+      "commonStock": 57319000000,
+      "commonStockSharesOutstanding": 898068600,
+      "currentAccountsPayable": 3955000000,
+      "currentDebt": 13551000000,
+      "currentLongTermDebt": 6728000000,
+      "currentNetReceivables": 14977000000,
+      "deferredRevenue": 16095000000,
+      "fiscalDateEnding": new Date(Date.parse('2021-12-31')),
+      "goodwill": 55643000000,
+      "intangibleAssets": 68154000000,
+      "intangibleAssetsExcludingGoodwill": 12511000000,
+      "inventory": 1649000000,
+      "investments": 199000000,
+      "longTermDebt": 56193000000,
+      "longTermDebtNoncurrent": 44917000000,
+      "longTermInvestments": 159000000,
+      "otherCurrentAssets": 5663000000,
+      "otherCurrentLiabilities": 9386000000,
+      "otherNonCurrentAssets": 0,
+      "otherNonCurrentLiabilities": 13996000000,
+      "propertyPlantEquipment": 5694000000,
+      "reportedCurrency": "USD",
+      "retainedEarnings": 154209000000,
+      "shortLongTermDebtTotal": 110496000000,
+      "shortTermDebt": 6787000000,
+      "shortTermInvestments": 600000000,
+      "totalAssets": 132001000000,
+      "totalCurrentAssets": 29539000000,
+      "totalCurrentLiabilities": 33619000000,
+      "totalLiabilities": 113005000000,
+      "totalNonCurrentAssets": 101786000000,
+      "totalNonCurrentLiabilities": 90188000000,
+      "totalShareholderEquity": 18901000000,
+      "treasuryStock": 169392000000
+    }],
   "quarterlyReports": [
-    {"accumulatedDepreciationAmortizationPPE": 13525000000, "capitalLeaseObligations": 2947000000, "cashAndCashEquivalentsAtCarryingValue": 7816000000, "cashAndShortTermInvestments": 7816000000, "commonStock": 58117000000, "commonStockSharesOutstanding": 904076831, "currentAccountsPayable": 3806000000, "currentDebt": 11678000000, "currentLongTermDebt": 5741000000, "currentNetReceivables": 6289000000, "deferredRevenue": 14157000000, "fiscalDateEnding": "2022-09-30", "goodwill": 54218000000, "intangibleAssets": 65185000000, "intangibleAssetsExcludingGoodwill": 10967000000, "inventory": 1794000000, "investments": 0, "longTermDebt": 46685000000, "longTermDebtNoncurrent": 44942000000, "longTermInvestments": 1614000000, "otherCurrentAssets": 4928000000, "otherCurrentLiabilities": 7073000000, "otherNonCurrentAssets": 0, "otherNonCurrentLiabilities": 13413000000, "propertyPlantEquipment": 5150000000, "reportedCurrency": "USD", "retainedEarnings": 148611000000, "shortLongTermDebtTotal": 76684000000, "shortTermDebt": 5937000000, "shortTermInvestments": 1753000000, "totalAssets": 125850000000, "totalCurrentAssets": 28999000000, "totalCurrentLiabilities": 30466000000, "totalLiabilities": 105703000000, "totalNonCurrentAssets": 95237000000, "totalNonCurrentLiabilities": 75236000000, "totalShareholderEquity": 20076000000, "treasuryStock": 169514000000}
+    {
+      "accumulatedDepreciationAmortizationPPE": 13525000000,
+      "capitalLeaseObligations": 2947000000,
+      "cashAndCashEquivalentsAtCarryingValue": 7816000000,
+      "cashAndShortTermInvestments": 7816000000,
+      "commonStock": 58117000000,
+      "commonStockSharesOutstanding": 904076831,
+      "currentAccountsPayable": 3806000000,
+      "currentDebt": 11678000000,
+      "currentLongTermDebt": 5741000000,
+      "currentNetReceivables": 6289000000,
+      "deferredRevenue": 14157000000,
+      "fiscalDateEnding": new Date(Date.parse("2022-09-30")),
+      "goodwill": 54218000000,
+      "intangibleAssets": 65185000000,
+      "intangibleAssetsExcludingGoodwill": 10967000000,
+      "inventory": 1794000000,
+      "investments": 0,
+      "longTermDebt": 46685000000,
+      "longTermDebtNoncurrent": 44942000000,
+      "longTermInvestments": 1614000000,
+      "otherCurrentAssets": 4928000000,
+      "otherCurrentLiabilities": 7073000000,
+      "otherNonCurrentAssets": 0,
+      "otherNonCurrentLiabilities": 13413000000,
+      "propertyPlantEquipment": 5150000000,
+      "reportedCurrency": "USD",
+      "retainedEarnings": 148611000000,
+      "shortLongTermDebtTotal": 76684000000,
+      "shortTermDebt": 5937000000,
+      "shortTermInvestments": 1753000000,
+      "totalAssets": 125850000000,
+      "totalCurrentAssets": 28999000000,
+      "totalCurrentLiabilities": 30466000000,
+      "totalLiabilities": 105703000000,
+      "totalNonCurrentAssets": 95237000000,
+      "totalNonCurrentLiabilities": 75236000000,
+      "totalShareholderEquity": 20076000000,
+      "treasuryStock": 169514000000
+    }
   ],
   "symbol": "IBM"
 }

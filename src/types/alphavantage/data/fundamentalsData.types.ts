@@ -2,6 +2,9 @@
 export type AVFundamentalsData = GeneralOverviewData | IncomeStatementData | BalanceSheetData | CashFlowData |
   AnnualEarningsData | ListDelistData | EarningsCalendarData | IPOCalendarData
 
+export type AVFundamentalsDataWithReports = IncomeStatementData | BalanceSheetData | CashFlowData
+export type AVReportData = IncomeStatementReportData | BalanceSheetReportData | CashFlowReportData
+
 export interface GeneralOverviewData {
   Symbol:                     string;
   AssetType:                  string;
@@ -53,11 +56,11 @@ export interface GeneralOverviewData {
 
 export interface IncomeStatementData {
   symbol:           string;
-  annualReports:    IncomeStatementReport[];
-  quarterlyReports: IncomeStatementReport[];
+  annualReports:    IncomeStatementReportData[];
+  quarterlyReports: IncomeStatementReportData[];
 }
 
-export interface IncomeStatementReport {
+export interface IncomeStatementReportData {
   fiscalDateEnding:                  Date;
   reportedCurrency:                  string;
   grossProfit:                       number;
@@ -88,11 +91,11 @@ export interface IncomeStatementReport {
 
 export interface BalanceSheetData {
   symbol:           string;
-  annualReports:    BalanceSheetReport[];
-  quarterlyReports: BalanceSheetReport[];
+  annualReports:    BalanceSheetReportData[];
+  quarterlyReports: BalanceSheetReportData[];
 }
 
-export interface BalanceSheetReport {
+export interface BalanceSheetReportData {
   fiscalDateEnding:                       Date;
   reportedCurrency:                       string;
   totalAssets:                            number;
@@ -135,11 +138,11 @@ export interface BalanceSheetReport {
 
 export interface CashFlowData {
   symbol:           string;
-  annualReports:    CashFlowReport[];
-  quarterlyReports: CashFlowReport[];
+  annualReports:    CashFlowReportData[];
+  quarterlyReports: CashFlowReportData[];
 }
 
-export interface CashFlowReport {
+export interface CashFlowReportData {
   fiscalDateEnding:                                          Date;
   reportedCurrency:                                          string;
   operatingCashflow:                                         number;
@@ -173,16 +176,16 @@ export interface CashFlowReport {
 
 export interface AnnualEarningsData {
   symbol:            string;
-  annualEarnings:    AnnualEarning[];
-  quarterlyEarnings: QuarterlyEarning[];
+  annualEarnings:    AnnualEarningD[];
+  quarterlyEarnings: QuarterlyEarningD[];
 }
 
-export interface AnnualEarning {
+export interface AnnualEarningD {
   fiscalDateEnding: Date;
   reportedEPS:      number;
 }
 
-export interface QuarterlyEarning {
+export interface QuarterlyEarningD {
   fiscalDateEnding:   Date;
   reportedDate:       Date;
   reportedEPS:        number;
@@ -208,7 +211,7 @@ export enum Status {
   Active = "Active",
 }
 
-interface ListDelistData {
+export interface ListDelistData {
   symbol:        string;
   name:          string;
   exchange:      Exchange;
@@ -218,7 +221,7 @@ interface ListDelistData {
   status:        Status;
 }
 
-interface EarningsCalendarData {
+export interface EarningsCalendarData {
   symbol:        string;
   name:          string;
   exchange:      Exchange;
@@ -228,7 +231,7 @@ interface EarningsCalendarData {
   status:        Status;
 }
 
-interface IPOCalendarData {
+export interface IPOCalendarData {
   symbol:         string;
   name:           string;
   ipoDate:        string;

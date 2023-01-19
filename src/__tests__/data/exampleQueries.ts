@@ -14,7 +14,7 @@ import {ForexDailyQuery} from "../../types/alphavantage/queries/forexQueries.typ
 import {CommoditiesAluminiumQuery} from "../../types/alphavantage/queries/commoditiesQueries.types";
 import {EconIndCPIQuery} from "../../types/alphavantage/queries/econIndQueries.types";
 import {CryptoDailyQuery} from "../../types/alphavantage/queries/cryptoQueries.types";
-import {fundBExampleResponse, imbAnnualReportsExpected} from "./moreData";
+import {fundBExampleResponse, imbAnnualReportsExpected, imbAnnualReportsExpected2} from "./moreData";
 
 const timeSeriesDailyAdjustedTestQuery: TimeSeriesDailyAdjustedQuery = {
   fn: AlphaVantageStockFnEnum.TIME_SERIES_DAILY_ADJUSTED,
@@ -65,5 +65,5 @@ export const TEST_QUERIES = {
 }
 
 export const TEST_RESPONSES = {
-  "ibmBalanceSheets": { response: fundBExampleResponse, output: imbAnnualReportsExpected }
+  "ibmBalanceSheets": { response: fundBExampleResponse, output: imbAnnualReportsExpected2 }
 }

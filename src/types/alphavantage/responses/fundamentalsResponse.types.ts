@@ -1,6 +1,8 @@
-
 export type AVFundamentalsResponse = GeneralOverviewResponse | IncomeStatementResponse | BalanceSheetResponse | CashFlowResponse |
   AnnualEarningsResponse | ListDelistResponse | EarningsCalendarResponse | IPOCalendarResponse
+
+export type AVFundamentalsResponseWithReports = IncomeStatementResponse | BalanceSheetResponse | CashFlowResponse
+export type AVReport = IncomeStatementReport | BalanceSheetReport | CashFlowReport
 
 export interface GeneralOverviewResponse {
   Symbol:                     string;
@@ -15,7 +17,7 @@ export interface GeneralOverviewResponse {
   Industry:                   string;
   Address:                    string;
   FiscalYearEnd:              string;
-  LatestQuarter:              Date;
+  LatestQuarter:              string;
   MarketCapitalization:       string;
   EBITDA:                     string;
   PERatio:                    string;
@@ -47,8 +49,8 @@ export interface GeneralOverviewResponse {
   "50DayMovingAverage":       string;
   "200DayMovingAverage":      string;
   SharesOutstanding:          string;
-  DividendDate:               Date;
-  ExDividendDate:             Date;
+  DividendDate:               string;
+  ExDividendDate:             string;
 }
 
 export interface IncomeStatementResponse {
@@ -58,7 +60,7 @@ export interface IncomeStatementResponse {
 }
 
 export interface IncomeStatementReport {
-  fiscalDateEnding:                  Date;
+  fiscalDateEnding:                  string;
   reportedCurrency:                  string;
   grossProfit:                       string;
   totalRevenue:                      string;
@@ -93,7 +95,7 @@ export interface BalanceSheetResponse {
 }
 
 export interface BalanceSheetReport {
-  fiscalDateEnding:                       Date;
+  fiscalDateEnding:                       string;
   reportedCurrency:                       string;
   totalAssets:                            string;
   totalCurrentAssets:                     string;
@@ -140,7 +142,7 @@ export interface CashFlowResponse {
 }
 
 export interface CashFlowReport {
-  fiscalDateEnding:                                          Date;
+  fiscalDateEnding:                                          string;
   reportedCurrency:                                          string;
   operatingCashflow:                                         string;
   paymentsForOperatingActivities:                            string;
@@ -178,13 +180,13 @@ export interface AnnualEarningsResponse {
 }
 
 export interface AnnualEarning {
-  fiscalDateEnding: Date;
+  fiscalDateEnding: string;
   reportedEPS:      string;
 }
 
 export interface QuarterlyEarning {
-  fiscalDateEnding:   Date;
-  reportedDate:       Date;
+  fiscalDateEnding:   string;
+  reportedDate:       string;
   reportedEPS:        string;
   estimatedEPS:       string;
   surprise:           string;

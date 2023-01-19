@@ -6,11 +6,11 @@ export interface CommoditiesResponse {
   name:     string;
   interval: AVCommoditiesIntervalEnum;
   unit:     string;
-  data:     CommoditiesDatum[];
+  data:     CommoditiesResponseDatum[];
 }
 
-export interface CommoditiesDatum {
-  date:  Date;
+export interface CommoditiesResponseDatum {
+  date:  string;
   value: string;
 }
 

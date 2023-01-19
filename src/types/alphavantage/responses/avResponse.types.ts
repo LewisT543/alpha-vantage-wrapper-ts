@@ -4,9 +4,9 @@ import {AVCryptoResponse} from "./cryptoResponse.types";
 import {AVFundamentalsResponse} from "./fundamentalsResponse.types";
 import {AVEconIndResponse} from "./econIndResponse.types";
 import {AVForexResponse} from "./forexResponse.types";
-import {AVStockResponse} from "./stockResponse.types";
+import {AVStocksResponse} from "./stockResponse.types";
 
-export type AVResponse = AVIntelResponse | AVCommoditiesResponse | AVCryptoResponse | AVFundamentalsResponse | AVEconIndResponse | AVForexResponse | AVStockResponse
+export type AVResponse = AVIntelResponse | AVCommoditiesResponse | AVCryptoResponse | AVFundamentalsResponse | AVEconIndResponse | AVForexResponse | AVStocksResponse
 
 // Crypto And Forex shared endpoint response
 export interface CurrencyExchangeResponse {

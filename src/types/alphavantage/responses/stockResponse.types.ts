@@ -1,27 +1,27 @@
 
-export type AVStockIntradayResponse = IntradayTimeSeriesResponse1Min | IntradayTimeSeriesResponse5Min |
-  IntradayTimeSeriesResponse15Min | IntradayTimeSeriesResponse30Min | IntradayTimeSeriesResponse60Min
-export type AVStockResponse = AVStockIntradayResponse | DailyTimeSeriesResponse | DailyAdjustedTimeSeriesResponse |
-  WeeklyTimeSeriesResponse | WeeklyAdjustedTimeSeriesResponse | MonthlyTimeSeriesResponse | MonthlyAdjustedTimeSeriesResponse |
-  GlobalQuoteResponse | SearchResponse
+export type AVStocksIntradayResponse = StocksIntradayResponse1Min | StocksIntradayResponse5Min |
+  StocksIntradayResponse15Min | StocksIntradayResponse30Min | StocksIntradayResponse60Min
+export type AVStocksLongTermResponse = StocksDailyResponse | StocksDailyAdjustedResponse | StocksWeeklyResponse |
+  StocksWeeklyAdjustedResponse | StocksMonthlyResponse | StocksMonthlyAdjustedResponse;
+export type AVStocksResponse = AVStocksIntradayResponse | AVStocksLongTermResponse | GlobalQuoteResponse | SearchResponse
 
-export interface WithMetaDataIntraday { "Meta Data": MetaDataIntraday; }
+export interface WithMetaDataIntradayResponse { "Meta Data": StocksIntradayMetaDataResponse; }
+export type StocksOHLCVResponseObjects = { [key: string]: StocksOHLCVDataResponse };
+export interface StocksIntradayResponse1Min extends WithMetaDataIntradayResponse { "Time Series (1min)": StocksOHLCVResponseObjects; }
+export interface StocksIntradayResponse5Min extends WithMetaDataIntradayResponse { "Time Series (5min)": StocksOHLCVResponseObjects; }
+export interface StocksIntradayResponse15Min extends WithMetaDataIntradayResponse { "Time Series (15min)": StocksOHLCVResponseObjects; }
+export interface StocksIntradayResponse30Min extends WithMetaDataIntradayResponse { "Time Series (30min)": StocksOHLCVResponseObjects; }
+export interface StocksIntradayResponse60Min extends WithMetaDataIntradayResponse { "Time Series (60min)": StocksOHLCVResponseObjects; }
 
-export interface IntradayTimeSeriesResponse1Min extends WithMetaDataIntraday { "Time Series (1min)": { [key: string]: OHLCVolumeData }; }
-export interface IntradayTimeSeriesResponse5Min extends WithMetaDataIntraday { "Time Series (5min)": { [key: string]: OHLCVolumeData }; }
-export interface IntradayTimeSeriesResponse15Min extends WithMetaDataIntraday { "Time Series (15min)": { [key: string]: OHLCVolumeData }; }
-export interface IntradayTimeSeriesResponse30Min extends WithMetaDataIntraday { "Time Series (30min)": { [key: string]: OHLCVolumeData }; }
-export interface IntradayTimeSeriesResponse60Min extends WithMetaDataIntraday { "Time Series (60min)": { [key: string]: OHLCVolumeData }; }
-
-export interface MetaDataIntraday {
+export interface StocksIntradayMetaDataResponse {
   "1. Information":    string;
   "2. Symbol":         string;
-  "3. Last Refreshed": Date;
+  "3. Last Refreshed": string;
   "4. Interval":       string;
   "5. Output Size":    string;
   "6. Time Zone":      string;
 }
-export interface OHLCVolumeData {
+export interface StocksOHLCVDataResponse {
   "1. open":   string;
   "2. high":   string;
   "3. low":    string;
@@ -29,15 +29,15 @@ export interface OHLCVolumeData {
   "5. volume": string;
 }
 
-export interface DailyTimeSeriesResponse {
-  "Meta Data": MetaDataDaily;
-  "Time Series (Daily)": { [key: string]: OHLCVolumeData };
+export interface StocksDailyResponse {
+  "Meta Data": StocksDailyMetaDataResponse;
+  "Time Series (Daily)": StocksOHLCVResponseObjects;
 }
-export interface DailyAdjustedTimeSeriesResponse {
-  "Meta Data": MetaDataDaily;
-  "Time Series (Daily)": { [key: string]: TimeSeriesAdjustedDailyData };
+export interface StocksDailyAdjustedResponse {
+  "Meta Data": StocksDailyMetaDataResponse;
+  "Time Series (Daily)": { [key: string]: StocksOHLCVDailyAdjustedResponse };
 }
-export interface TimeSeriesAdjustedDailyData {
+export interface StocksOHLCVDailyAdjustedResponse {
   "1. open":              string;
   "2. high":              string;
   "3. low":               string;
@@ -48,26 +48,26 @@ export interface TimeSeriesAdjustedDailyData {
   "8. split coefficient": string;
 }
 
-export interface MetaDataDaily {
+export interface StocksDailyMetaDataResponse {
   "1. Information":    string;
   "2. Symbol":         string;
-  "3. Last Refreshed": Date;
+  "3. Last Refreshed": string;
   "4. Output Size":    string;
   "5. Time Zone":      string;
 }
 
-export interface StockLongtermMetaData {
+export interface StocksLongtermMetaDataResponse {
   "1. Information":    string;
   "2. Symbol":         string;
-  "3. Last Refreshed": Date;
+  "3. Last Refreshed": string;
   "4. Time Zone":      string;
 }
-interface WithStockLongtermMetaData { "Meta Data": StockLongtermMetaData;}
-export interface WeeklyTimeSeriesResponse extends WithStockLongtermMetaData { "Weekly Time Series": { [key: string]: OHLCVolumeData };}
-export interface WeeklyAdjustedTimeSeriesResponse extends WithStockLongtermMetaData { "Weekly Adjusted Time Series": { [key: string]: OHLCVolumeData };}
-export interface MonthlyTimeSeriesResponse extends WithStockLongtermMetaData { "Monthly Time Series": { [key: string]: OHLCVolumeData };}
+interface WithStockLongtermMetaDataResponse { "Meta Data": StocksLongtermMetaDataResponse;}
+export interface StocksWeeklyResponse extends WithStockLongtermMetaDataResponse { "Weekly Time Series": StocksOHLCVResponseObjects;}
+export interface StocksWeeklyAdjustedResponse extends WithStockLongtermMetaDataResponse { "Weekly Adjusted Time Series": StocksOHLCVResponseObjects;}
+export interface StocksMonthlyResponse extends WithStockLongtermMetaDataResponse { "Monthly Time Series": StocksOHLCVResponseObjects;}
 
-export interface MonthlyAdjustedTimeSeriesData {
+export interface StocksOHLCVMonthlyAdjustedResponse {
   "1. open":            string;
   "2. high":            string;
   "3. low":             string;
@@ -77,30 +77,25 @@ export interface MonthlyAdjustedTimeSeriesData {
   "7. dividend amount": string;
 }
 
-export interface MonthlyAdjustedTimeSeriesResponse extends WithStockLongtermMetaData { "Monthly Adjusted Time Series": { [key: string]: MonthlyAdjustedTimeSeriesData };}
+export type StocksOHLCVMonthlyAdjustedResponseObjects = { [key: string]: StocksOHLCVMonthlyAdjustedResponse };
+export interface StocksMonthlyAdjustedResponse extends WithStockLongtermMetaDataResponse { "Monthly Adjusted Time Series": StocksOHLCVMonthlyAdjustedResponseObjects;}
 
-export interface GlobalQuoteResponse {
-  "Global Quote": GlobalQuoteData;
-}
-
-export interface GlobalQuoteData {
+export interface GlobalQuoteResponse { "Global Quote": GlobalQuoteInnerResponse;}
+export interface GlobalQuoteInnerResponse {
   "01. symbol":             string;
   "02. open":               string;
   "03. high":               string;
   "04. low":                string;
   "05. price":              string;
   "06. volume":             string;
-  "07. latest trading day": Date;
+  "07. latest trading day": string;
   "08. previous close":     string;
   "09. change":             string;
   "10. change percent":     string;
 }
 
-export interface SearchResponse {
-  bestMatches: BestMatch[];
-}
-
-export interface BestMatch {
+export interface SearchResponse { bestMatches: BestMatchResponse[]}
+export interface BestMatchResponse {
   "1. symbol":      string;
   "2. name":        string;
   "3. type":        string;
