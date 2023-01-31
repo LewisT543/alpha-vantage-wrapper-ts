@@ -5,20 +5,20 @@ import {AVCryptoData} from "./cryptoData.types";
 import {AVFundamentalsData} from "./fundamentalsData.types";
 import {AVEconIndData} from "./econIndData.types";
 import {AVForexData} from "./forexData.types";
-import {AVStockData} from "./stockData.types";
+import {AVStocksData} from "./stockData.types";
 
-export type AVData = AVIntelData | AVCommoditiesData | AVCryptoData | AVFundamentalsData | AVEconIndData | AVForexData | AVStockData
+export type AVData = AVIntelData | AVCommoditiesData | AVCryptoData | AVFundamentalsData | AVEconIndData | AVForexData | AVStocksData
 
-export interface CurrencyExchangeData { "Realtime Currency Exchange Rate": RealtimeCurrencyExchangeRateData; }
+export interface CurrencyExchangeData { realtimeCurrencyExchangeRate: RealtimeCurrencyExchangeRateData; }
 
 export interface RealtimeCurrencyExchangeRateData {
-  "1. From_Currency Code": string;
-  "2. From_Currency Name": string;
-  "3. To_Currency Code":   string;
-  "4. To_Currency Name":   string;
-  "5. Exchange Rate":      number;
-  "6. Last Refreshed":     Date;
-  "7. Time Zone":          string;
-  "8. Bid Price":          number;
-  "9. Ask Price":          number;
+  the1FromCurrencyCode:  string;
+  the2FromCurrencyName:  string;
+  the3ToCurrencyCode:    string;
+  the4ToCurrencyName:    string;
+  the5ExchangeRate:      number;
+  the6LastRefreshed:     Date;
+  the7TimeZone:          string;
+  the8BidPrice:          number;
+  the9AskPrice:          number;
 }

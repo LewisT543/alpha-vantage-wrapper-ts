@@ -49,7 +49,6 @@ export const convertCryptoToData = (response: AVCryptoResponse): AVCryptoData =>
   if (isLongTermCrypto(response)) return convertCryptoLongTermData(response)
   throw new Error(`convertCryptoIntradayData failed: ${response}`)
 }
-
 const convertCryptoIntradayData = (intraDayResponse: AVCryptoIntradayResponse): AVCryptoIntradayData => {
   if (is1MinCrypto(intraDayResponse)) return convertCryptoIntraday1MinData(intraDayResponse)
   if (is5MinCrypto(intraDayResponse)) return convertCryptoIntraday5MinData(intraDayResponse)
@@ -65,8 +64,7 @@ const convertCryptoLongTermData = (longTermResponse: AVCryptoLongTermResponse): 
   throw new Error(`convertCryptoLongTermData failed: ${longTermResponse}`)
 }
 
-
-const convertIntradayCryptoMetaData = (metaData: CryptoIntradayMetaDataResponse): CryptoIntradayMetaData => ({
+export const convertIntradayCryptoMetaData = (metaData: CryptoIntradayMetaDataResponse): CryptoIntradayMetaData => ({
   "1. Information":           metaData["1. Information"],
   "2. Digital Currency Code": metaData["2. Digital Currency Code"],
   "3. Digital Currency Name": metaData["3. Digital Currency Name"],
@@ -108,8 +106,6 @@ const convertCryptoOHLCV = (ohlcv: CryptoOHLCVResponse): CryptoOHLCVData => ({
   "4. close":     Number(ohlcv["4. close"]),
   "5. volume":    Number(ohlcv["5. volume"]),
 })
-
-
 
 const convertCryptoLongTermMetaData = (metaData: CryptoLongtermMetaDataResponse): CryptoLongtermMetaData => ({
   "1. Information":           metaData["1. Information"],

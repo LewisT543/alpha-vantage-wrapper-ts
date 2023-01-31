@@ -70,72 +70,72 @@ const convertForexLongTermData = (longTermResponse: AVForexLongTermResponse): AV
 }
 
 const convertForexIntraday1MinData = (response: ForexIntradayResponse1Min): ForexIntradayData1Min => ({
-  "Meta Data":               convertForexIntradayMetaData(response["Meta Data"]),
-  "Time Series FX (1min)":   loopConvertOHLCObj(response["Time Series FX (1min)"])
+  metaData:           convertForexIntradayMetaData(response["Meta Data"]),
+  timeSeriesFX1min:   loopConvertOHLCObj(response["Time Series FX (1min)"])
 })
 const convertForexIntraday5MinData = (response: ForexIntradayResponse5Min): ForexIntradayData5Min => ({
-  "Meta Data":                convertForexIntradayMetaData(response["Meta Data"]),
-  "Time Series FX (5min)":    loopConvertOHLCObj(response["Time Series FX (5min)"])
+  metaData:            convertForexIntradayMetaData(response["Meta Data"]),
+  timeSeriesFX5min:    loopConvertOHLCObj(response["Time Series FX (5min)"])
 })
 const convertForexIntraday15MinData = (response: ForexIntradayResponse15Min): ForexIntradayData15Min => ({
-  "Meta Data":                convertForexIntradayMetaData(response["Meta Data"]),
-  "Time Series FX (15min)":   loopConvertOHLCObj(response["Time Series FX (15min)"])
+  metaData:            convertForexIntradayMetaData(response["Meta Data"]),
+  timeSeriesFX15min:   loopConvertOHLCObj(response["Time Series FX (15min)"])
 })
 const convertForexIntraday30MinData = (response: ForexIntradayResponse30Min): ForexIntradayData30Min => ({
-  "Meta Data":                convertForexIntradayMetaData(response["Meta Data"]),
-  "Time Series FX (30min)":   loopConvertOHLCObj(response["Time Series FX (30min)"])
+  metaData:            convertForexIntradayMetaData(response["Meta Data"]),
+  timeSeriesFX30min:   loopConvertOHLCObj(response["Time Series FX (30min)"])
 })
 const convertForexIntraday60MinData = (response: ForexIntradayResponse60Min): ForexIntradayData60Min => ({
-  "Meta Data":                convertForexIntradayMetaData(response["Meta Data"]),
-  "Time Series FX (60min)":   loopConvertOHLCObj(response["Time Series FX (60min)"])
+  metaData:             convertForexIntradayMetaData(response["Meta Data"]),
+  timeSeriesFX60min:    loopConvertOHLCObj(response["Time Series FX (60min)"])
 })
 
 const loopConvertOHLCObj = (obj: ForexOHLCResponseObjects): ForexOHLCDataObjects =>
   Object.fromEntries(Object.entries(obj).map(([key, val]) => [key, convertForexOHLC(val)]));
 
 const convertForexIntradayMetaData = (metaData: ForexIntradayMetaDataResponse): ForexIntradayMetaData => ({
-  "1. Information":    metaData["1. Information"],
-  "2. From Symbol":    metaData["2. From Symbol"],
-  "3. To Symbol":      metaData["3. To Symbol"],
-  "4. Last Refreshed": getDateFromString(metaData["4. Last Refreshed"]),
-  "5. Interval":       metaData["5. Interval"],
-  "6. Output Size":    metaData["6. Output Size"],
-  "7. Time Zone":      metaData["7. Time Zone"],
+  the1Information:    metaData["1. Information"],
+  the2FromSymbol:     metaData["2. From Symbol"],
+  the3ToSymbol:       metaData["3. To Symbol"],
+  the4LastRefreshed:  getDateFromString(metaData["4. Last Refreshed"]),
+  the5Interval:       metaData["5. Interval"],
+  the6OutputSize:     metaData["6. Output Size"],
+  the7TimeZone:       metaData["7. Time Zone"],
 })
 
 const convertForexOHLC = (ohlc: ForexOHLCResponse): ForexOHLCData => ({
-  "1. open":  Number(ohlc["1. open"]),
-  "2. high":  Number(ohlc["2. high"]),
-  "3. low":   Number(ohlc["3. low"]),
-  "4. close": Number(ohlc["4. close"]),
+  the1Open:  Number(ohlc["1. open"]),
+  the2High:  Number(ohlc["2. high"]),
+  the3Low:   Number(ohlc["3. low"]),
+  the4Close: Number(ohlc["4. close"]),
 })
 
 const convertForexDaily = (response: ForexDailyResponse): ForexDailyData => ({
-  "Meta Data":                convertForexDailyMetaData(response["Meta Data"]),
-  "Time Series FX (Daily)":   loopConvertOHLCObj(response["Time Series FX (Daily)"])
+  metaData:                convertForexDailyMetaData(response["Meta Data"]),
+  timeSeriesFXDaily:       loopConvertOHLCObj(response["Time Series FX (Daily)"])
 })
 const convertForexWeekly = (response: ForexWeeklyResponse): ForexWeeklyData => ({
-  "Meta Data":                convertForexLongTermMetaData(response["Meta Data"]),
-  "Time Series FX (Weekly)":  loopConvertOHLCObj(response["Time Series FX (Weekly)"])
+  metaData:                convertForexLongTermMetaData(response["Meta Data"]),
+  timeSeriesFXWeekly:      loopConvertOHLCObj(response["Time Series FX (Weekly)"])
 })
 const convertForexMonthly = (response: ForexMonthlyResponse): ForexMonthlyData => ({
-  "Meta Data":                convertForexLongTermMetaData(response["Meta Data"]),
-  "Time Series FX (Monthly)": loopConvertOHLCObj(response["Time Series FX (Monthly)"])
+  metaData:                convertForexLongTermMetaData(response["Meta Data"]),
+  timeSeriesFXMonthly:     loopConvertOHLCObj(response["Time Series FX (Monthly)"])
 })
 
 const convertForexDailyMetaData = (metaData: ForexDailyMetaDataResponse): ForexDailyMetaData => ({
-  "1. Information":    metaData["1. Information"],
-  "2. From Symbol":    metaData["2. From Symbol"],
-  "3. To Symbol":      metaData["3. To Symbol"],
-  "4. Output Size":    metaData["4. Output Size"],
-  "5. Last Refreshed": getDateFromString(metaData["5. Last Refreshed"]),
-  "6. Time Zone":      metaData["6. Time Zone"],
+  the1Information:    metaData["1. Information"],
+  the2FromSymbol:     metaData["2. From Symbol"],
+  the3ToSymbol:       metaData["3. To Symbol"],
+  the4OutputSize:     metaData["4. Output Size"],
+  the5LastRefreshed:  getDateFromString(metaData["5. Last Refreshed"]),
+  the6TimeZone:       metaData["6. Time Zone"],
 })
 
 const convertForexLongTermMetaData = (metaData: ForexWeeklyAndMonthlyMetaDataResponse): ForexWeeklyAndMonthlyMetaData => ({
-  "1. Information":    metaData["1. Information"],
-  "2. From Symbol":    metaData["2. From Symbol"],
-  "3. To Symbol":      metaData["3. To Symbol"],
-  "4. Last Refreshed": getDateFromString(metaData["4. Last Refreshed"]),
-  "5. Time Zone":      metaData["5. Time Zone"],
+  the1Information:    metaData["1. Information"],
+  the2FromSymbol:     metaData["2. From Symbol"],
+  the3ToSymbol:       metaData["3. To Symbol"],
+  the4LastRefreshed:  getDateFromString(metaData["4. Last Refreshed"]),
+  the5TimeZone:       metaData["5. Time Zone"],
 })

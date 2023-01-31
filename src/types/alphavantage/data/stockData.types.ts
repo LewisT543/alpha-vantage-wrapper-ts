@@ -1,112 +1,110 @@
-import {AVTimeSeriesIntervalEnum} from "../../enums";
-
 export type AVStockIntradayData = StocksIntradayData1Min | StocksIntradayData5Min |
   StocksIntradayData15Min | StocksIntradayData30Min | StocksIntradayData60Min
-export type AVStocksLongTermData = StocksDailyData | StocksDailyAdjustedData |
-  StocksWeeklyData | StocksWeeklyAdjustedData | StocksMonthlyData | StocksMonthlyAdjustedData
-export type AVStockData = AVStockIntradayData | AVStocksLongTermData | GlobalQuoteData | SearchData
+export type AVStocksLongTermData = StocksDailyData | StocksWeeklyData | StocksMonthlyData
+export type AVStocksLongTermAdjustedData = StocksDailyAdjustedData | StocksWeeklyAdjustedData | StocksMonthlyAdjustedData
+export type AVStocksData = AVStockIntradayData | AVStocksLongTermData | AVStocksLongTermAdjustedData | GlobalQuoteData | SearchData
 
-export interface WithMetaDataIntraday { "Meta Data": StocksIntradayMetaData; }
-export type StocksOHLCVResponseObjects = { [key: string]: StocksOHLCVData };
-export type StocksOHLCVDailyAdjResponseObjects = { [key: string]: StocksOHLCVDailyAdjustedData };
-export interface StocksIntradayData1Min extends WithMetaDataIntraday { "Time Series (1min)": StocksOHLCVResponseObjects;}
-export interface StocksIntradayData5Min extends WithMetaDataIntraday { "Time Series (5min)": StocksOHLCVResponseObjects;}
-export interface StocksIntradayData15Min extends WithMetaDataIntraday { "Time Series (15min)": StocksOHLCVResponseObjects;}
-export interface StocksIntradayData30Min extends WithMetaDataIntraday { "Time Series (30min)": StocksOHLCVResponseObjects;}
-export interface StocksIntradayData60Min extends WithMetaDataIntraday { "Time Series (60min)": StocksOHLCVResponseObjects;}
+export interface WithMetaDataIntraday { metaData: StocksIntradayMetaData; }
+export type StocksOHLCVDataObjects = { [key: string]: StocksOHLCVData };
+export type StocksOHLCVDailyAdjDataObjects = { [key: string]: StocksOHLCVDailyAdjustedData };
+export interface StocksIntradayData1Min extends WithMetaDataIntraday { "Time Series (1min)": StocksOHLCVDataObjects;}
+export interface StocksIntradayData5Min extends WithMetaDataIntraday { "Time Series (5min)": StocksOHLCVDataObjects;}
+export interface StocksIntradayData15Min extends WithMetaDataIntraday { "Time Series (15min)": StocksOHLCVDataObjects;}
+export interface StocksIntradayData30Min extends WithMetaDataIntraday { "Time Series (30min)": StocksOHLCVDataObjects;}
+export interface StocksIntradayData60Min extends WithMetaDataIntraday { "Time Series (60min)": StocksOHLCVDataObjects;}
 
 export interface StocksIntradayMetaData {
-  "1. Information":    string;
-  "2. Symbol":         string;
-  "3. Last Refreshed": Date;
-  "4. Interval":       AVTimeSeriesIntervalEnum;
-  "5. Output Size":    string;
-  "6. Time Zone":      string;
+  the1Information:   string;
+  the2Symbol:        string;
+  the3LastRefreshed: Date;
+  the4Interval:      string;
+  the5OutputSize:    string;
+  the6TimeZone:      string;
 }
 export interface StocksOHLCVData {
-  "1. open":   number;
-  "2. high":   number;
-  "3. low":    number;
-  "4. close":  number;
-  "5. volume": number;
+  the1Open:   number;
+  the2High:   number;
+  the3Low:    number;
+  the4Close:  number;
+  the5Volume: number;
 }
 
 export interface StocksDailyData {
-  "Meta Data":           StocksDailyMetaData;
-  "Time Series (Daily)": StocksOHLCVResponseObjects;
+  metaData:           StocksDailyMetaData;
+  timeSeriesDaily:    StocksOHLCVDataObjects;
 }
 
 export interface StocksDailyAdjustedData {
-  "Meta Data":           StocksDailyMetaData;
-  "Time Series (Daily)": StocksOHLCVDailyAdjResponseObjects;
-}
-
-export interface StocksOHLCVDailyAdjustedData {
-  "1. open":              number;
-  "2. high":              number;
-  "3. low":               number;
-  "4. close":             number;
-  "5. adjusted close":    number;
-  "6. volume":            number;
-  "7. dividend amount":   number;
-  "8. split coefficient": number;
+  metaData:           StocksDailyMetaData;
+  timeSeriesDaily:    StocksOHLCVDailyAdjDataObjects;
 }
 
 export interface StocksDailyMetaData {
-  "1. Information":    string;
-  "2. Symbol":         string;
-  "3. Last Refreshed": Date;
-  "4. Output Size":    string;
-  "5. Time Zone":      string;
+  the1Information:   string;
+  the2Symbol:        string;
+  the3LastRefreshed: Date;
+  the4OutputSize:    string;
+  the5TimeZone:      string;
 }
 
-export interface StocksLongtermMetaDataResponse {
-  "1. Information":    string;
-  "2. Symbol":         string;
-  "3. Last Refreshed": Date;
-  "4. Time Zone":      string;
-}
-interface WithStockLongtermMetaData { "Meta Data": StocksLongtermMetaDataResponse; }
-export interface StocksWeeklyData extends WithStockLongtermMetaData { "Weekly Time Series": StocksOHLCVResponseObjects; }
-export interface StocksWeeklyAdjustedData extends WithStockLongtermMetaData { "Weekly Adjusted Time Series": StocksOHLCVResponseObjects; }
-export interface StocksMonthlyData extends WithStockLongtermMetaData { "Monthly Time Series": StocksOHLCVResponseObjects; }
-
-export interface StocksOHLCVMonthlyAdjustedData {
-  "1. open":            number;
-  "2. high":            number;
-  "3. low":             number;
-  "4. close":           number;
-  "5. adjusted close":  number;
-  "6. volume":          number;
-  "7. dividend amount": number;
+export interface StocksOHLCVDailyAdjustedData {
+  the1Open:             number;
+  the2High:             number;
+  the3Low:              number;
+  the4Close:            number;
+  the5AdjustedClose:    number;
+  the6Volume:           number;
+  the7DividendAmount:   number;
+  the8SplitCoefficient: number;
 }
 
-export type StocksOHLCVMonthlyAdjustedDataObjects = { [key: string]: StocksOHLCVMonthlyAdjustedData };
-export interface StocksMonthlyAdjustedData extends WithStockLongtermMetaData { "Monthly Adjusted Time Series": StocksOHLCVMonthlyAdjustedDataObjects;}
+export interface StocksLongtermMetaData {
+  the1Information:   string;
+  the2Symbol:        string;
+  the3LastRefreshed: Date;
+  the4TimeZone:      string;
+}
+interface WithStockLongtermMetaData { metaData: StocksLongtermMetaData; }
+export interface StocksWeeklyData extends WithStockLongtermMetaData { weeklyTimeSeries: StocksOHLCVDataObjects; }
+export interface StocksMonthlyData extends WithStockLongtermMetaData { monthlyTimeSeries: StocksOHLCVDataObjects; }
 
-export interface GlobalQuoteData { "Global Quote": GlobalQuoteInnerData;}
+export interface StocksOHLCVLongtermAdjustedData {
+  the1Open:           number;
+  the2High:           number;
+  the3Low:            number;
+  the4Close:          number;
+  the5AdjustedClose:  number;
+  the6Volume:         number;
+  the7DividendAmount: number;
+}
+
+export type StocksOHLCVLongtermAdjustedDataObjects = { [key: string]: StocksOHLCVLongtermAdjustedData };
+export interface StocksWeeklyAdjustedData extends WithStockLongtermMetaData { weeklyAdjustedTimeSeries: StocksOHLCVLongtermAdjustedDataObjects; }
+export interface StocksMonthlyAdjustedData extends WithStockLongtermMetaData { monthlyAdjustedTimeSeries: StocksOHLCVLongtermAdjustedDataObjects;}
+
+export interface GlobalQuoteData { globalQuote: GlobalQuoteInnerData;}
 export interface GlobalQuoteInnerData {
-  "01. symbol":             number;
-  "02. open":               number;
-  "03. high":               number;
-  "04. low":                number;
-  "05. price":              number;
-  "06. volume":             number;
-  "07. latest trading day": Date;
-  "08. previous close":     number;
-  "09. change":             number;
-  "10. change percent":     string;
+  the01Symbol:           string;
+  the02Open:             number;
+  the03High:             number;
+  the04Low:              number;
+  the05Price:            number;
+  the06Volume:           number;
+  the07LatestTradingDay: Date;
+  the08PreviousClose:    number;
+  the09Change:           number;
+  the10ChangePercent:    number;
 }
 
 export interface SearchData { bestMatches: BestMatchData[];}
 export interface BestMatchData {
-  "1. symbol":      string;
-  "2. name":        string;
-  "3. type":        string;
-  "4. region":      string;
-  "5. marketOpen":  string;
-  "6. marketClose": string;
-  "7. timezone":    string;
-  "8. currency":    string;
-  "9. matchScore":  number;
+  the1Symbol:      string;
+  the2Name:        string;
+  the3Type:        string;
+  the4Region:      string;
+  the5MarketOpen:  string;
+  the6MarketClose: string;
+  the7Timezone:    string;
+  the8Currency:    string;
+  the9MatchScore:  number;
 }

@@ -9,16 +9,14 @@ import {AVStocksResponse} from "./stockResponse.types";
 export type AVResponse = AVIntelResponse | AVCommoditiesResponse | AVCryptoResponse | AVFundamentalsResponse | AVEconIndResponse | AVForexResponse | AVStocksResponse
 
 // Crypto And Forex shared endpoint response
-export interface CurrencyExchangeResponse {
-  "Realtime Currency Exchange Rate": RealtimeCurrencyExchangeRateData;
-}
-export interface RealtimeCurrencyExchangeRateData {
+export interface CurrencyExchangeResponse { "Realtime Currency Exchange Rate": RealtimeCurrencyExchangeRateResponseData; }
+export interface RealtimeCurrencyExchangeRateResponseData {
   "1. From_Currency Code": string;
   "2. From_Currency Name": string;
   "3. To_Currency Code":   string;
   "4. To_Currency Name":   string;
   "5. Exchange Rate":      string;
-  "6. Last Refreshed":     Date;
+  "6. Last Refreshed":     string;
   "7. Time Zone":          string;
   "8. Bid Price":          string;
   "9. Ask Price":          string;

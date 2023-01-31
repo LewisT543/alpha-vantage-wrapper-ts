@@ -1,6 +1,6 @@
 import {
   AnnualEarning,
-  AnnualEarningsResponse,
+  AnnualEarningsResponse, AVFundamentalsResponse,
   BalanceSheetReport,
   BalanceSheetResponse, CashFlowReport, CashFlowResponse,
   GeneralOverviewResponse, IncomeStatementReport,
@@ -9,7 +9,7 @@ import {
 import {getDateFromString} from "../utils";
 import {
   AnnualEarningD,
-  AnnualEarningsData,
+  AnnualEarningsData, AVFundamentalsData,
   BalanceSheetData,
   BalanceSheetReportData, CashFlowData, CashFlowReportData,
   GeneralOverviewData,
@@ -17,6 +17,20 @@ import {
   IncomeStatementReportData, QuarterlyEarningD
 } from "../types/alphavantage/data/fundamentalsData.types";
 
+const isGeneralOverview = (response: AVFundamentalsResponse): response is GeneralOverviewResponse => response !== undefined
+const isIncomeStatementResponse = (response: AVFundamentalsResponse): response is IncomeStatementResponse => response !== undefined
+const isBalanceSheetResponse = (response: AVFundamentalsResponse): response is BalanceSheetResponse => response !== undefined
+const isCashFlowResponse = (response: AVFundamentalsResponse): response is CashFlowResponse => response !== undefined
+const isAnnualEarningsResponse = (response: AVFundamentalsResponse): response is AnnualEarningsResponse => response !== undefined
+
+export const convertFundamentalsToData = (response: AVFundamentalsResponse): AVFundamentalsData => {
+  if (isGeneralOverview(response)) return convertGeneralOverviewToData(response)
+  if (isIncomeStatementResponse(response)) return convertIncomeStatementToData(response)
+  if (isBalanceSheetResponse(response)) return convertBalanceSheetToData(response)
+  if (isCashFlowResponse(response)) return convertCashFlowToData(response)
+  if (isAnnualEarningsResponse(response)) return convertAnnualEarningsToData(response)
+  throw new Error("ERROR: Cannot convert to fundamentals data")
+}
 
 export const convertGeneralOverviewToData = (response: GeneralOverviewResponse): GeneralOverviewData => ({
   Symbol:                     response.Symbol,
@@ -207,4 +221,4 @@ const convertQuarterlyEarningsReports = (quarterlyEarning: QuarterlyEarning): Qu
   surprisePercentage: Number(quarterlyEarning.surprisePercentage),
 })
 
-// THE REST OF THESE ARE CSV RESPONSE TYPES
+// THE REST OF THESE ARE CSV ONLY RESPONSE TYPES (And I am just not doing it.)

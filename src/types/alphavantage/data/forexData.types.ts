@@ -5,62 +5,62 @@ export type AVForexLongTermData = ForexDailyData | ForexWeeklyData | ForexMonthl
 export type AVForexIntradayData = ForexIntradayData1Min | ForexIntradayData5Min | ForexIntradayData15Min | ForexIntradayData30Min | ForexIntradayData60Min
 export type AVForexData = CurrencyExchangeData | AVForexIntradayData | AVForexLongTermData
 
-interface WithForexIntradayMetaData { "Meta Data": ForexIntradayMetaData; }
+interface WithForexIntradayMetaData { metaData: ForexIntradayMetaData; }
 
 export type ForexOHLCDataObjects = { [key: string]: ForexOHLCData };
-export interface ForexIntradayData1Min extends WithForexIntradayMetaData { "Time Series FX (1min)": ForexOHLCDataObjects; }
-export interface ForexIntradayData5Min extends WithForexIntradayMetaData { "Time Series FX (5min)": ForexOHLCDataObjects; }
-export interface ForexIntradayData15Min extends WithForexIntradayMetaData { "Time Series FX (15min)": ForexOHLCDataObjects; }
-export interface ForexIntradayData30Min extends WithForexIntradayMetaData { "Time Series FX (30min)": ForexOHLCDataObjects; }
-export interface ForexIntradayData60Min extends WithForexIntradayMetaData { "Time Series FX (60min)": ForexOHLCDataObjects; }
+export interface ForexIntradayData1Min extends WithForexIntradayMetaData { timeSeriesFX1min: ForexOHLCDataObjects; }
+export interface ForexIntradayData5Min extends WithForexIntradayMetaData { timeSeriesFX5min: ForexOHLCDataObjects; }
+export interface ForexIntradayData15Min extends WithForexIntradayMetaData { timeSeriesFX15min: ForexOHLCDataObjects; }
+export interface ForexIntradayData30Min extends WithForexIntradayMetaData { timeSeriesFX30min: ForexOHLCDataObjects; }
+export interface ForexIntradayData60Min extends WithForexIntradayMetaData { timeSeriesFX60min: ForexOHLCDataObjects; }
 
 
 export interface ForexIntradayMetaData {
-  "1. Information":    string;
-  "2. From Symbol":    string;
-  "3. To Symbol":      string;
-  "4. Last Refreshed": Date;
-  "5. Interval":       AVTimeSeriesIntervalEnum;
-  "6. Output Size":    string;
-  "7. Time Zone":      string;
+  the1Information:    string;
+  the2FromSymbol:     string;
+  the3ToSymbol:       string;
+  the4LastRefreshed:  Date;
+  the5Interval:       AVTimeSeriesIntervalEnum;
+  the6OutputSize:     string;
+  the7TimeZone:       string;
 }
 
 export interface ForexOHLCData {
-  "1. open":  number;
-  "2. high":  number;
-  "3. low":   number;
-  "4. close": number;
+  the1Open:  number;
+  the2High:  number;
+  the3Low:   number;
+  the4Close: number;
 }
 
 export interface ForexDailyData {
-  "Meta Data":              ForexDailyMetaData;
-  "Time Series FX (Daily)": ForexOHLCDataObjects;
+  metaData:              ForexDailyMetaData;
+  timeSeriesFXDaily:     ForexOHLCDataObjects;
 }
 
 export interface ForexDailyMetaData {
-  "1. Information":    string;
-  "2. From Symbol":    string;
-  "3. To Symbol":      string;
-  "4. Output Size":    string;
-  "5. Last Refreshed": Date;
-  "6. Time Zone":      string;
+  the1Information:    string;
+  the2FromSymbol:     string;
+  the3ToSymbol:       string;
+  the4OutputSize:     string;
+  the5LastRefreshed:  Date;
+  the6TimeZone:       string;
 }
 
 export interface ForexWeeklyData {
-  "Meta Data":               ForexWeeklyAndMonthlyMetaData;
-  "Time Series FX (Weekly)": ForexOHLCDataObjects;
+  metaData:               ForexWeeklyAndMonthlyMetaData;
+  timeSeriesFXWeekly:     ForexOHLCDataObjects;
 }
 
 export interface ForexMonthlyData {
-  "Meta Data":                ForexWeeklyAndMonthlyMetaData;
-  "Time Series FX (Monthly)": ForexOHLCDataObjects;
+  metaData:                ForexWeeklyAndMonthlyMetaData;
+  timeSeriesFXMonthly:     ForexOHLCDataObjects;
 }
 
 export interface ForexWeeklyAndMonthlyMetaData {
-  "1. Information":    string;
-  "2. From Symbol":    string;
-  "3. To Symbol":      string;
-  "4. Last Refreshed": Date;
-  "5. Time Zone":      string;
+  the1Information:    string;
+  the2FromSymbol:     string;
+  the3ToSymbol:       string;
+  the4LastRefreshed:  Date;
+  the5TimeZone:       string;
 }
 
