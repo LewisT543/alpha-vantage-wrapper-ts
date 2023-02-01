@@ -21,7 +21,7 @@ import {convertForexToData} from "./forexConverter.types";
 import {convertStocksToData} from "./stockConverter.types";
 
 
-export const convertCurrencyExchangeToData = (exchangeResponse: CurrencyExchangeResponse): CurrencyExchangeData => ({
+const convertCurrencyExchangeToData = (exchangeResponse: CurrencyExchangeResponse): CurrencyExchangeData => ({
   realtimeCurrencyExchangeRate:        convertRealtimeCurrencyExchangeRate(exchangeResponse["Realtime Currency Exchange Rate"])
 })
 

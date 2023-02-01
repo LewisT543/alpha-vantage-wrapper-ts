@@ -27,7 +27,7 @@ const convertNewsToData = (response: NewsResponse): NewsData => ({
   items:                      Number(response.items),
   sentiment_score_definition: response.sentiment_score_definition,
   relevance_score_definition: response.relevance_score_definition,
-  feed:                       response.feed.map(convertFeed)
+  feed:                       response.feed?.map(convertFeed)
 })
 
 const convertPortfoliosToData = (response: PortfoliosResponse): PortfoliosData => ({
@@ -77,7 +77,3 @@ const convertSinglePortfolio = (portfolio: SinglePortfolio): SinglePortfolioData
   symbol:   portfolio.symbol,
   shares:   Number(portfolio.shares)
 })
-
-
-
-

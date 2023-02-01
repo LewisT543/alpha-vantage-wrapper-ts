@@ -14,7 +14,6 @@ import {ForexDailyQuery} from "../../types/alphavantage/queries/forexQueries.typ
 import {CommoditiesAluminiumQuery} from "../../types/alphavantage/queries/commoditiesQueries.types";
 import {EconIndCPIQuery} from "../../types/alphavantage/queries/econIndQueries.types";
 import {CryptoDailyQuery} from "../../types/alphavantage/queries/cryptoQueries.types";
-import {fundBExampleResponse, imbAnnualReportsExpected, imbAnnualReportsExpected2} from "./moreData";
 
 const timeSeriesDailyAdjustedTestQuery: TimeSeriesDailyAdjustedQuery = {
   fn: AlphaVantageStockFnEnum.TIME_SERIES_DAILY_ADJUSTED,
@@ -62,8 +61,4 @@ export const TEST_QUERIES = {
   "cryptoDaily": { query: cryptoDailyTestQuery, output: 'https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=ETH&market=USD&apikey=demo' },
   "commoditiesAluminium": { query: commoditiesAluminiumTestQuery, output: 'https://www.alphavantage.co/query?function=ALUMINUM&datatype=json&apikey=demo' },
   "econIndCPITestQuery": { query: econIndCPITestQuery, output: 'https://www.alphavantage.co/query?function=CPI&interval=monthly&apikey=demo' },
-}
-
-export const TEST_RESPONSES = {
-  "ibmBalanceSheets": { response: fundBExampleResponse, output: imbAnnualReportsExpected2 }
 }

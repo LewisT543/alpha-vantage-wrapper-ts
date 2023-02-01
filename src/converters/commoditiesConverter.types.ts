@@ -13,4 +13,3 @@ const convertCommoditiesDatum = (datum: CommoditiesResponseDatum): CommoditiesDa
   date:   getDateFromString(datum.date),
   value:  Number(datum.value)
 })
-

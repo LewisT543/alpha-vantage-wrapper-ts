@@ -32,6 +32,7 @@ import {
   CryptoOHLCVDataObjects, CryptoWeeklyData
 } from "../types/alphavantage/data/cryptoData.types";
 import {getDateFromString} from "../utils";
+import {AVTimeSeriesIntervalEnum} from "../types/enums";
 
 const isIntradayCrypto = (response: AVCryptoResponse): response is AVCryptoIntradayResponse => response !== undefined
 const isLongTermCrypto = (response: AVCryptoResponse): response is AVCryptoLongTermResponse => response !== undefined
@@ -65,87 +66,83 @@ const convertCryptoLongTermData = (longTermResponse: AVCryptoLongTermResponse): 
 }
 
 export const convertIntradayCryptoMetaData = (metaData: CryptoIntradayMetaDataResponse): CryptoIntradayMetaData => ({
-  "1. Information":           metaData["1. Information"],
-  "2. Digital Currency Code": metaData["2. Digital Currency Code"],
-  "3. Digital Currency Name": metaData["3. Digital Currency Name"],
-  "4. Market Code":           metaData["4. Market Code"],
-  "5. Market Name":           metaData["5. Market Name"],
-  "6. Last Refreshed":        getDateFromString(metaData["6. Last Refreshed"]),
-  "7. Interval":              metaData["7. Interval"],
-  "8. Output Size":           metaData["8. Output Size"],
-  "9. Time Zone":             metaData["9. Time Zone"]
+  the1Information:            metaData["1. Information"],
+  the2DigitalCurrencyCode:    metaData["2. Digital Currency Code"],
+  the3DigitalCurrencyName:    metaData["3. Digital Currency Name"],
+  the4MarketCode:             metaData["4. Market Code"],
+  the5MarketName:             metaData["5. Market Name"],
+  the6LastRefreshed:          getDateFromString(metaData["6. Last Refreshed"]),
+  the7Interval:               metaData["7. Interval"],
+  the8OutputSize:             metaData["8. Output Size"],
+  the9TimeZone:               metaData["9. Time Zone"]
 })
 const convertCryptoIntraday1MinData = (intraDayResponse: CryptoIntradayResponse1Min): CryptoIntradayData1Min => ({
-  "Meta Data":                    convertIntradayCryptoMetaData(intraDayResponse["Meta Data"]),
-  "Time Series Crypto (1min)":    loopConvertOHLCVObj(intraDayResponse["Time Series Crypto (1min)"])
+  metaData:                     convertIntradayCryptoMetaData(intraDayResponse["Meta Data"]),
+  timeSeriesCrypto1min:         loopConvertOHLCVObj(intraDayResponse["Time Series Crypto (1min)"])
 })
 const convertCryptoIntraday5MinData = (intraDayResponse: CryptoIntradayResponse5Min): CryptoIntradayData5Min => ({
-  "Meta Data":                     convertIntradayCryptoMetaData(intraDayResponse["Meta Data"]),
-  "Time Series Crypto (5min)":     loopConvertOHLCVObj(intraDayResponse["Time Series Crypto (5min)"])
+  metaData:                     convertIntradayCryptoMetaData(intraDayResponse["Meta Data"]),
+  timeSeriesCrypto5min:         loopConvertOHLCVObj(intraDayResponse["Time Series Crypto (5min)"])
 })
 const convertCryptoIntraday15MinData = (intraDayResponse: CryptoIntradayResponse15Min): CryptoIntradayData15Min => ({
-  "Meta Data":                     convertIntradayCryptoMetaData(intraDayResponse["Meta Data"]),
-  "Time Series Crypto (15min)":    loopConvertOHLCVObj(intraDayResponse["Time Series Crypto (15min)"])
+  metaData:                     convertIntradayCryptoMetaData(intraDayResponse["Meta Data"]),
+  timeSeriesCrypto15min:        loopConvertOHLCVObj(intraDayResponse["Time Series Crypto (15min)"])
 })
 const convertCryptoIntraday30MinData = (intraDayResponse: CryptoIntradayResponse30Min): CryptoIntradayData30Min => ({
-  "Meta Data":                     convertIntradayCryptoMetaData(intraDayResponse["Meta Data"]),
-  "Time Series Crypto (30min)":    loopConvertOHLCVObj(intraDayResponse["Time Series Crypto (30min)"])
+  metaData:                     convertIntradayCryptoMetaData(intraDayResponse["Meta Data"]),
+  timeSeriesCrypto30min:        loopConvertOHLCVObj(intraDayResponse["Time Series Crypto (30min)"])
 })
 const convertCryptoIntraday60MinData = (intraDayResponse: CryptoIntradayResponse60Min): CryptoIntradayData60Min => ({
-  "Meta Data":                     convertIntradayCryptoMetaData(intraDayResponse["Meta Data"]),
-  "Time Series Crypto (60min)":    loopConvertOHLCVObj(intraDayResponse["Time Series Crypto (60min)"])
+  metaData:                     convertIntradayCryptoMetaData(intraDayResponse["Meta Data"]),
+  timeSeriesCrypto60min:        loopConvertOHLCVObj(intraDayResponse["Time Series Crypto (60min)"])
 })
 
 const loopConvertOHLCVObj = (obj: CryptoOHLCVResponseObjects): CryptoOHLCVDataObjects =>
   Object.fromEntries(Object.entries(obj).map(([key, val]) => [key, convertCryptoOHLCV(val)]));
 
 const convertCryptoOHLCV = (ohlcv: CryptoOHLCVResponse): CryptoOHLCVData => ({
-  "1. open":      Number(ohlcv["1. open"]),
-  "2. high":      Number(ohlcv["2. high"]),
-  "3. low":       Number(ohlcv["3. low"]),
-  "4. close":     Number(ohlcv["4. close"]),
-  "5. volume":    Number(ohlcv["5. volume"]),
+  the1Open:      Number(ohlcv["1. open"]),
+  the2High:      Number(ohlcv["2. high"]),
+  the3Low:       Number(ohlcv["3. low"]),
+  the4Close:     Number(ohlcv["4. close"]),
+  the5Volume:    Number(ohlcv["5. volume"]),
 })
 
 const convertCryptoLongTermMetaData = (metaData: CryptoLongtermMetaDataResponse): CryptoLongtermMetaData => ({
-  "1. Information":           metaData["1. Information"],
-  "2. Digital Currency Code": metaData["2. Digital Currency Code"],
-  "3. Digital Currency Name": metaData["3. Digital Currency Name"],
-  "4. Market Code":           metaData["4. Market Code"],
-  "5. Market Name":           metaData["5. Market Name"],
-  "6. Last Refreshed":        getDateFromString(metaData["6. Last Refreshed"]),
-  "7. Time Zone":             metaData["7. Time Zone"]
+  the1Information:           metaData["1. Information"],
+  the2DigitalCurrencyCode:   metaData["2. Digital Currency Code"],
+  the3DigitalCurrencyName:   metaData["3. Digital Currency Name"],
+  the4MarketCode:            metaData["4. Market Code"],
+  the5MarketName:            metaData["5. Market Name"],
+  the6LastRefreshed:         getDateFromString(metaData["6. Last Refreshed"]),
+  the7TimeZone:              metaData["7. Time Zone"]
 })
 
 const convertCryptoDaily = (longTermResponse: CryptoDailyResponse): CryptoDailyData => ({
-  "Meta Data":          convertCryptoLongTermMetaData(longTermResponse["Meta Data"]),
-  "Time Series (Digital Currency Daily)" : loopConvertDoubleOHLCVObj(longTermResponse["Time Series (Digital Currency Daily)"])
+  metaData:                         convertCryptoLongTermMetaData(longTermResponse["Meta Data"]),
+  timeSeriesDigitalCurrencyDaily:   loopConvertDoubleOHLCVObj(longTermResponse["Time Series (Digital Currency Daily)"])
 })
 const convertCryptoWeekly = (longTermResponse: CryptoWeeklyResponse): CryptoWeeklyData => ({
-  "Meta Data":          convertCryptoLongTermMetaData(longTermResponse["Meta Data"]),
-  "Time Series (Digital Currency Weekly)" : loopConvertDoubleOHLCVObj(longTermResponse["Time Series (Digital Currency Weekly)"])
+  metaData:                         convertCryptoLongTermMetaData(longTermResponse["Meta Data"]),
+  timeSeriesDigitalCurrencyWeekly:  loopConvertDoubleOHLCVObj(longTermResponse["Time Series (Digital Currency Weekly)"])
 })
 const convertCryptoMonthly = (longTermResponse: CryptoMonthlyResponse): CryptoMonthlyData => ({
-  "Meta Data":          convertCryptoLongTermMetaData(longTermResponse["Meta Data"]),
-  "Time Series (Digital Currency Monthly)" : loopConvertDoubleOHLCVObj(longTermResponse["Time Series (Digital Currency Monthly)"])
+  metaData:                         convertCryptoLongTermMetaData(longTermResponse["Meta Data"]),
+  timeSeriesDigitalCurrencyMonthly: loopConvertDoubleOHLCVObj(longTermResponse["Time Series (Digital Currency Monthly)"])
 })
 
 const loopConvertDoubleOHLCVObj = (obj: CryptoDoubleOHLCVResponseObjects): CryptoDoubleOHLCVDataObjects =>
   Object.fromEntries(Object.entries(obj).map(([key, val]) => [key, convertCryptoDoubleOHLCV(val)]));
 
 const convertCryptoDoubleOHLCV = (doubleOhlcv: CryptoDoubleOHLCVResponse): CryptoDoubleOHLCVData => ({
-  "1a. open (CNY)":      Number(doubleOhlcv["1a. open (CNY)"]),
-  "1b. open (USD)":      Number(doubleOhlcv["1b. open (USD)"]),
-  "2a. high (CNY)":      Number(doubleOhlcv["2a. high (CNY)"]),
-  "2b. high (USD)":      Number(doubleOhlcv["2b. high (USD)"]),
-  "3a. low (CNY)":       Number(doubleOhlcv["3a. low (CNY)"]),
-  "3b. low (USD)":       Number(doubleOhlcv["3b. low (USD)"]),
-  "4a. close (CNY)":     Number(doubleOhlcv["4a. close (CNY)"]),
-  "4b. close (USD)":     Number(doubleOhlcv["4b. close (USD)"]),
-  "5. volume":           Number(doubleOhlcv["5. volume"]),
-  "6. market cap (USD)": Number(doubleOhlcv["6. market cap (USD)"]),
+  the1AOpenCNY:         Number(doubleOhlcv["1a. open (CNY)"]),
+  the1BOpenUSD:         Number(doubleOhlcv["1b. open (USD)"]),
+  the2AHighCNY:         Number(doubleOhlcv["2a. high (CNY)"]),
+  the2BHighUSD:         Number(doubleOhlcv["2b. high (USD)"]),
+  the3ALowCNY:          Number(doubleOhlcv["3a. low (CNY)"]),
+  the3BLowUSD:          Number(doubleOhlcv["3b. low (USD)"]),
+  the4ACloseCNY:        Number(doubleOhlcv["4a. close (CNY)"]),
+  the4BCloseUSD:        Number(doubleOhlcv["4b. close (USD)"]),
+  the5Volume:           Number(doubleOhlcv["5. volume"]),
+  the6MarketCapUSD:     Number(doubleOhlcv["6. market cap (USD)"]),
 })
-
-
-
-
