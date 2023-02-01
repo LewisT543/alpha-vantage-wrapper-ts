@@ -2,23 +2,23 @@ import {
   AVResponse,
   CurrencyExchangeResponse,
   RealtimeCurrencyExchangeRateResponseData
-} from "../types/alphavantage/responses/avResponse.types";
-import {getDateFromString} from "../utils";
-import {AVData, CurrencyExchangeData, RealtimeCurrencyExchangeRateData} from "../types/alphavantage/data/avData.types";
-import {AVForexResponse} from "../types/alphavantage/responses/forexResponse.types";
-import {AVCommoditiesResponse} from "../types/alphavantage/responses/commoditiesResponse.types";
-import {AVFundamentalsResponse} from "../types/alphavantage/responses/fundamentalsResponse.types";
-import {AVIntelResponse} from "../types/alphavantage/responses/alphaIntelResponse.types";
-import {AVCryptoResponse} from "../types/alphavantage/responses/cryptoResponse.types";
-import {AVStocksResponse} from "../types/alphavantage/responses/stockResponse.types";
-import {AVEconIndResponse} from "../types/alphavantage/responses/econIndResponse.types";
-import {convertAlphaIntelToData} from "./alphaIntelConverter.types";
-import {convertCommoditiesToData} from "./commoditiesConverter.types";
-import {convertCryptoToData} from "./cryptoConverter.types";
-import {convertFundamentalsToData} from "./fundamentalsConverter.types";
-import {convertEconIndToData} from "./econIndConverter.types";
-import {convertForexToData} from "./forexConverter.types";
-import {convertStocksToData} from "./stockConverter.types";
+} from "./types/alphavantage/responses/avResponse.types";
+import {getDateFromString} from "./utils";
+import {AVData, CurrencyExchangeData, RealtimeCurrencyExchangeRateData} from "./types/alphavantage/data/avData.types";
+import {AVForexResponse} from "./types/alphavantage/responses/forexResponse.types";
+import {AVCommoditiesResponse} from "./types/alphavantage/responses/commoditiesResponse.types";
+import {AVFundamentalsResponse} from "./types/alphavantage/responses/fundamentalsResponse.types";
+import {AVIntelResponse} from "./types/alphavantage/responses/alphaIntelResponse.types";
+import {AVCryptoResponse} from "./types/alphavantage/responses/cryptoResponse.types";
+import {AVStocksResponse} from "./types/alphavantage/responses/stockResponse.types";
+import {AVEconIndResponse} from "./types/alphavantage/responses/econIndResponse.types";
+import {convertAlphaIntelToData} from "./converters/alphaIntelConverter.types";
+import {convertCommoditiesToData} from "./converters/commoditiesConverter.types";
+import {convertCryptoToData} from "./converters/cryptoConverter.types";
+import {convertFundamentalsToData} from "./converters/fundamentalsConverter.types";
+import {convertEconIndToData} from "./converters/econIndConverter.types";
+import {convertForexToData} from "./converters/forexConverter.types";
+import {convertStocksToData} from "./converters/stockConverter.types";
 
 
 const convertCurrencyExchangeToData = (exchangeResponse: CurrencyExchangeResponse): CurrencyExchangeData => ({

@@ -1,5 +1,5 @@
 import {testResponsesAndData} from "../data/moreData";
-import {convertAVResponseToData} from "../../converters/avConverter.types";
+import {convertAVResponseToData} from "../../avResponseToDataConverter";
 
 
 describe("avConverter", () => {
