@@ -1,9 +1,8 @@
-import {CurrencyExchangeData} from "./avData.types";
 import {AVTimeSeriesIntervalEnum} from "../../enums";
 
 export type AVCryptoLongTermData = CryptoDailyData | CryptoWeeklyData | CryptoMonthlyData
 export type AVCryptoIntradayData = CryptoIntradayData1Min | CryptoIntradayData5Min | CryptoIntradayData15Min | CryptoIntradayData30Min | CryptoIntradayData60Min
-export type AVCryptoData = CurrencyExchangeData | AVCryptoIntradayData | CryptoDailyData | CryptoWeeklyData | CryptoMonthlyData
+export type AVCryptoData = AVCryptoIntradayData | CryptoDailyData | CryptoWeeklyData | CryptoMonthlyData
 
 interface WithCryptoIntradayMetaData { metaData: CryptoIntradayMetaData; }
 export type CryptoOHLCVDataObjects = { [key: string]: CryptoOHLCVData };

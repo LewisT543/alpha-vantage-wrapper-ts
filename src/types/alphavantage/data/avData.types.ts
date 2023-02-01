@@ -7,7 +7,7 @@ import {AVEconIndData} from "./econIndData.types";
 import {AVForexData} from "./forexData.types";
 import {AVStocksData} from "./stockData.types";
 
-export type AVData = AVIntelData | AVCommoditiesData | AVCryptoData | AVFundamentalsData | AVEconIndData | AVForexData | AVStocksData
+export type AVData = CurrencyExchangeData | AVIntelData | AVCommoditiesData | AVCryptoData | AVFundamentalsData | AVEconIndData | AVForexData | AVStocksData
 
 export interface CurrencyExchangeData { realtimeCurrencyExchangeRate: RealtimeCurrencyExchangeRateData; }
 

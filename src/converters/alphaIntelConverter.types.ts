@@ -14,8 +14,8 @@ import {
   NewsTopicData, PortfolioRankingData, PortfoliosData, SinglePortfolioData
 } from "../types/alphavantage/data/alphaIntelData.types";
 
-const isNewsIntel = (response: AVIntelResponse): response is NewsResponse => response !== undefined
-const isPortfolioIntel = (response: AVIntelResponse): response is PortfoliosResponse => response !== undefined
+export const isNewsIntel = (response: AVIntelResponse): response is NewsResponse => (response as NewsResponse).feed !== undefined
+export const isPortfolioIntel = (response: AVIntelResponse): response is PortfoliosResponse => (response as PortfoliosResponse).ranking !== undefined
 
 export const convertAlphaIntelToData = (response: AVIntelResponse): AVIntelData => {
   if (isNewsIntel(response)) return convertNewsToData(response)

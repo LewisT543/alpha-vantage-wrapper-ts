@@ -1,6 +1,7 @@
 import {
   AVCryptoIntradayResponse,
-  AVCryptoLongTermResponse, AVCryptoResponse,
+  AVCryptoLongTermResponse,
+  AVCryptoResponse,
   CryptoDailyResponse,
   CryptoDoubleOHLCVResponse,
   CryptoDoubleOHLCVResponseObjects,
@@ -19,7 +20,9 @@ import {
 import {
   AVCryptoData,
   AVCryptoIntradayData,
-  AVCryptoLongTermData, CryptoDailyData, CryptoDoubleOHLCVData,
+  AVCryptoLongTermData,
+  CryptoDailyData,
+  CryptoDoubleOHLCVData,
   CryptoDoubleOHLCVDataObjects,
   CryptoIntradayData15Min,
   CryptoIntradayData1Min,
@@ -27,23 +30,24 @@ import {
   CryptoIntradayData5Min,
   CryptoIntradayData60Min,
   CryptoIntradayMetaData,
-  CryptoLongtermMetaData, CryptoMonthlyData,
+  CryptoLongtermMetaData,
+  CryptoMonthlyData,
   CryptoOHLCVData,
-  CryptoOHLCVDataObjects, CryptoWeeklyData
+  CryptoOHLCVDataObjects,
+  CryptoWeeklyData
 } from "../types/alphavantage/data/cryptoData.types";
 import {getDateFromString} from "../utils";
-import {AVTimeSeriesIntervalEnum} from "../types/enums";
 
-const isIntradayCrypto = (response: AVCryptoResponse): response is AVCryptoIntradayResponse => response !== undefined
-const isLongTermCrypto = (response: AVCryptoResponse): response is AVCryptoLongTermResponse => response !== undefined
-const is1MinCrypto = (response: AVCryptoIntradayResponse): response is CryptoIntradayResponse1Min => response !== undefined
-const is5MinCrypto = (response: AVCryptoIntradayResponse): response is CryptoIntradayResponse5Min => response !== undefined
-const is15MinCrypto = (response: AVCryptoIntradayResponse): response is CryptoIntradayResponse15Min => response !== undefined
-const is30MinCrypto = (response: AVCryptoIntradayResponse): response is CryptoIntradayResponse30Min => response !== undefined
-const is60MinCrypto = (response: AVCryptoIntradayResponse): response is CryptoIntradayResponse60Min => response !== undefined
-const isDailyCrypto = (response: AVCryptoLongTermResponse): response is CryptoDailyResponse => response === response
-const isWeeklyCrypto = (response: AVCryptoLongTermResponse): response is CryptoWeeklyResponse => response === response
-const isMonthlyCrypto = (response: AVCryptoLongTermResponse): response is CryptoMonthlyResponse => response === response
+export const isIntradayCrypto = (response: AVCryptoResponse): response is AVCryptoIntradayResponse => response["Meta Data"] !== undefined && (response as AVCryptoIntradayResponse)["Meta Data"]["9. Time Zone"] !== undefined
+export const isLongTermCrypto = (response: AVCryptoResponse): response is AVCryptoLongTermResponse => response["Meta Data"] !== undefined && (response as AVCryptoLongTermResponse)["Meta Data"]["7. Time Zone"] !== undefined
+export const is1MinCrypto = (response: AVCryptoIntradayResponse): response is CryptoIntradayResponse1Min => (response as CryptoIntradayResponse1Min)["Time Series Crypto (1min)"] !== undefined
+export const is5MinCrypto = (response: AVCryptoIntradayResponse): response is CryptoIntradayResponse5Min => (response as CryptoIntradayResponse5Min)["Time Series Crypto (5min)"] !== undefined
+export const is15MinCrypto = (response: AVCryptoIntradayResponse): response is CryptoIntradayResponse15Min => (response as CryptoIntradayResponse15Min)["Time Series Crypto (15min)"] !== undefined
+export const is30MinCrypto = (response: AVCryptoIntradayResponse): response is CryptoIntradayResponse30Min => (response as CryptoIntradayResponse30Min)["Time Series Crypto (30min)"] !== undefined
+export const is60MinCrypto = (response: AVCryptoIntradayResponse): response is CryptoIntradayResponse60Min => (response as CryptoIntradayResponse60Min)["Time Series Crypto (60min)"] !== undefined
+export const isDailyCrypto = (response: AVCryptoLongTermResponse): response is CryptoDailyResponse => (response as CryptoDailyResponse)["Time Series (Digital Currency Daily)"] !== undefined
+export const isWeeklyCrypto = (response: AVCryptoLongTermResponse): response is CryptoWeeklyResponse => (response as CryptoWeeklyResponse)["Time Series (Digital Currency Weekly)"] !== undefined
+export const isMonthlyCrypto = (response: AVCryptoLongTermResponse): response is CryptoMonthlyResponse => (response as CryptoMonthlyResponse)["Time Series (Digital Currency Monthly)"] !== undefined
 
 export const convertCryptoToData = (response: AVCryptoResponse): AVCryptoData => {
   if (isIntradayCrypto(response)) return convertCryptoIntradayData(response)

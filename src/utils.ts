@@ -2,6 +2,7 @@
 
 import {CryptoOHLCVResponseObjects} from "./types/alphavantage/responses/cryptoResponse.types";
 import {CryptoOHLCVDataObjects} from "./types/alphavantage/data/cryptoData.types";
+import {AVResponse} from "./types/alphavantage/responses/avResponse.types";
 
 export const objectMap = (obj: any, fn: any) =>
   Object.entries(obj).map(
@@ -21,6 +22,11 @@ export const isPresentObject = <T>(arg: T): arg is T => arg && Object.keys(arg).
                           //bad any - no FN type yet
 const loopConvertObj = (fn: any) => <R extends CryptoOHLCVResponseObjects, D extends CryptoOHLCVDataObjects>(obj: CryptoOHLCVResponseObjects): CryptoOHLCVDataObjects =>
   Object.fromEntries(Object.entries(obj).map(([key, val]) => [key, fn(val)]));
+
+
+export const asResponseType = <T extends AVResponse>(response: AVResponse) => (response as T)
+
+export const asAndIsResponseType = <T extends AVResponse, T2 extends AVResponse>(response: AVResponse, isFn: (resp: T2) => boolean): boolean => isFn(asResponseType<T2>(response))
 
 export type ArrayElement<A> = A extends readonly (infer T)[] ? T : never;
 type DeepWriteable<T> = { -readonly [P in keyof T]: DeepWriteable<T[P]> };

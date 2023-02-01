@@ -36,17 +36,17 @@ import {
 } from "../types/alphavantage/data/forexData.types";
 import {getDateFromString} from "../utils";
 
-const isIntradayForex = (response: AVForexResponse): response is AVForexIntradayResponse => response !== undefined
-const isLongTermForex = (response: AVForexResponse): response is AVForexLongTermResponse => response !== undefined
+export const isIntradayForex = (response: AVForexResponse): response is AVForexIntradayResponse => response["Meta Data"] !== undefined && (response as AVForexIntradayResponse)["Meta Data"]["7. Time Zone"] !== undefined
+export const isLongTermForex = (response: AVForexResponse): response is AVForexLongTermResponse => response["Meta Data"] !== undefined && (response as AVForexLongTermResponse)["Meta Data"]["3. To Symbol"] !== undefined
 
-const is1MinForex = (response: AVForexIntradayResponse): response is ForexIntradayResponse1Min => response !== undefined
-const is5MinForex = (response: AVForexIntradayResponse): response is ForexIntradayResponse5Min => response !== undefined
-const is15MinForex = (response: AVForexIntradayResponse): response is ForexIntradayResponse15Min => response !== undefined
-const is30MinForex = (response: AVForexIntradayResponse): response is ForexIntradayResponse30Min => response !== undefined
-const is60MinForex = (response: AVForexIntradayResponse): response is ForexIntradayResponse60Min => response !== undefined
-const isDailyForex = (response: AVForexLongTermResponse): response is ForexDailyResponse => response !== undefined
-const isWeeklyForex = (response: AVForexLongTermResponse): response is ForexWeeklyResponse => response !== undefined
-const isMonthlyForex = (response: AVForexLongTermResponse): response is ForexMonthlyResponse => response !== undefined
+export const is1MinForex = (response: AVForexIntradayResponse): response is ForexIntradayResponse1Min => (response as ForexIntradayResponse1Min)["Time Series FX (1min)"] !== undefined
+export const is5MinForex = (response: AVForexIntradayResponse): response is ForexIntradayResponse5Min => (response as ForexIntradayResponse5Min)["Time Series FX (5min)"] !== undefined
+export const is15MinForex = (response: AVForexIntradayResponse): response is ForexIntradayResponse15Min => (response as ForexIntradayResponse15Min)["Time Series FX (15min)"] !== undefined
+export const is30MinForex = (response: AVForexIntradayResponse): response is ForexIntradayResponse30Min => (response as ForexIntradayResponse30Min)["Time Series FX (30min)"] !== undefined
+export const is60MinForex = (response: AVForexIntradayResponse): response is ForexIntradayResponse60Min => (response as ForexIntradayResponse60Min)["Time Series FX (60min)"] !== undefined
+export const isDailyForex = (response: AVForexLongTermResponse): response is ForexDailyResponse => (response as ForexDailyResponse)["Time Series FX (Daily)"] !== undefined
+export const isWeeklyForex = (response: AVForexLongTermResponse): response is ForexWeeklyResponse => (response as ForexWeeklyResponse)["Time Series FX (Weekly)"] !== undefined
+export const isMonthlyForex = (response: AVForexLongTermResponse): response is ForexMonthlyResponse => (response as ForexMonthlyResponse)["Time Series FX (Monthly)"] !== undefined
 
 export const convertForexToData = (response: AVForexResponse): AVForexData => {
   if (isIntradayForex(response)) return convertForexIntradayData(response)

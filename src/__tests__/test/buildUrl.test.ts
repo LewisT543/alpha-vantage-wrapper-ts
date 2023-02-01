@@ -3,9 +3,9 @@ import {TEST_QUERIES} from "../data/exampleQueries";
 
 
 describe('urlBuilder should correctly form urls from queries', () => {
-  Object.values(TEST_QUERIES).forEach((testQuery) => {
-    test(`${testQuery.query.fn.toLowerCase()}`, () => {
-      expect(queryToAVUrl(testQuery.query)).toBe(testQuery.output)
+  TEST_QUERIES.forEach((testQuery) => {
+    test(`${testQuery.name} | ${testQuery.data.query.fn}`, () => {
+      expect(queryToAVUrl(testQuery.data.query)).toBe(testQuery.data.output)
     })
   })
 })

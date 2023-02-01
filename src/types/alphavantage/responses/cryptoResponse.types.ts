@@ -1,9 +1,8 @@
-import {CurrencyExchangeResponse} from "./avResponse.types";
 import {AVTimeSeriesIntervalEnum} from "../../enums";
 
 export type AVCryptoLongTermResponse = CryptoDailyResponse | CryptoWeeklyResponse | CryptoMonthlyResponse
 export type AVCryptoIntradayResponse = CryptoIntradayResponse1Min | CryptoIntradayResponse5Min | CryptoIntradayResponse15Min | CryptoIntradayResponse30Min | CryptoIntradayResponse60Min
-export type AVCryptoResponse = CurrencyExchangeResponse | AVCryptoIntradayResponse | AVCryptoLongTermResponse
+export type AVCryptoResponse = AVCryptoIntradayResponse | AVCryptoLongTermResponse
 
 interface WithCryptoIntradayMetaData { "Meta Data": CryptoIntradayMetaDataResponse; }
 

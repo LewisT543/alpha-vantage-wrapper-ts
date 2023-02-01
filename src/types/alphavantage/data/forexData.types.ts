@@ -1,9 +1,8 @@
-import {CurrencyExchangeData} from "./avData.types";
 import {AVTimeSeriesIntervalEnum} from "../../enums";
 
 export type AVForexLongTermData = ForexDailyData | ForexWeeklyData | ForexMonthlyData
 export type AVForexIntradayData = ForexIntradayData1Min | ForexIntradayData5Min | ForexIntradayData15Min | ForexIntradayData30Min | ForexIntradayData60Min
-export type AVForexData = CurrencyExchangeData | AVForexIntradayData | AVForexLongTermData
+export type AVForexData = AVForexIntradayData | AVForexLongTermData
 
 interface WithForexIntradayMetaData { metaData: ForexIntradayMetaData; }
 

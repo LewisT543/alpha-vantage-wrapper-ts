@@ -1,7 +1,8 @@
 import {BalanceSheetResponse} from "../../types/alphavantage/responses/fundamentalsResponse.types";
+import {convertAVResponseToData} from "../../avResponseToDataConverter";
 
 
-const fundBExampleResponse: BalanceSheetResponse = {
+const fundamentalsBalanceSheet: BalanceSheetResponse = {
   "symbol": "IBM",
   "annualReports": [
     {
@@ -88,9 +89,10 @@ const fundBExampleResponse: BalanceSheetResponse = {
     },
   ]
 }
-const fundBExampleData = {}
+const fundamentalsBalanceSheetData = {}
 
-export const testResponsesAndData = [
-  { name: "fundBalanceSheets", rAndD: { response: fundBExampleResponse, data: fundBExampleData } },
-
+export const TEST_DATA_AND_RESPONSES = [
+  { name: "fundamentalsBalanceSheet", rAndD: { response: fundamentalsBalanceSheet, data: fundamentalsBalanceSheetData } },
 ]
+
+console.log(convertAVResponseToData(fundamentalsBalanceSheet))

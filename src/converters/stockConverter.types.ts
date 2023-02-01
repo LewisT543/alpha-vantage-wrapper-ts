@@ -44,23 +44,23 @@ import {
 import {convertPctStr, getDateFromString} from "../utils";
 
 
-const isIntradayStocks = (response: AVStocksResponse): response is AVStocksIntradayResponse => response !== undefined
-const isLongTermStocks = (response: AVStocksResponse): response is AVStocksLongTermResponse => response !== undefined
-const isLongTermAdjustedStocks = (response: AVStocksResponse): response is AVStocksLongTermAdjustedResponse => response !== undefined
-const isGlobalQuote = (response: AVStocksResponse): response is GlobalQuoteResponse => response !== undefined
-const isSearch = (response: AVStocksResponse): response is SearchResponse => response !== undefined
+export const isIntradayStocks = (response: AVStocksResponse): response is AVStocksIntradayResponse => (response as AVStocksIntradayResponse)["Meta Data"] !== undefined && (response as AVStocksIntradayResponse)["Meta Data"]["6. Time Zone"] !== undefined
+export const isLongTermStocks = (response: AVStocksResponse): response is AVStocksLongTermResponse => (response as AVStocksLongTermResponse)["Meta Data"] !== undefined && (response as AVStocksLongTermResponse)["Meta Data"]["1. Information"].includes(" Prices (open, high, low, close) and Volumes")
+export const isLongTermAdjustedStocks = (response: AVStocksResponse): response is AVStocksLongTermAdjustedResponse => (response as AVStocksLongTermAdjustedResponse)["Meta Data"] !== undefined && (response as AVStocksLongTermAdjustedResponse)["Meta Data"]["1. Information"].includes(" Adjusted Prices and Volumes")
+export const isGlobalQuote = (response: AVStocksResponse): response is GlobalQuoteResponse => response !== undefined && (response as GlobalQuoteResponse)["Global Quote"] !== undefined
+export const isSearch = (response: AVStocksResponse): response is SearchResponse => response !== undefined && (response as SearchResponse)["bestMatches"] !== undefined
 
-const is1MinStocks = (response: AVStocksIntradayResponse): response is StocksIntradayResponse1Min => response !== undefined
-const is5MinStocks = (response: AVStocksIntradayResponse): response is StocksIntradayResponse5Min => response !== undefined
-const is15MinStocks = (response: AVStocksIntradayResponse): response is StocksIntradayResponse15Min => response !== undefined
-const is30MinStocks = (response: AVStocksIntradayResponse): response is StocksIntradayResponse30Min => response !== undefined
-const is60MinStocks = (response: AVStocksIntradayResponse): response is StocksIntradayResponse60Min => response !== undefined
-const isDailyStocks = (response: AVStocksLongTermResponse): response is StocksDailyResponse => response !== undefined
-const isDailyAdjustedStocks = (response: AVStocksLongTermAdjustedResponse): response is StocksDailyAdjustedResponse => response !== undefined
-const isWeeklyStocks = (response: AVStocksLongTermResponse): response is StocksWeeklyResponse => response !== undefined
-const isWeeklyAdjustedStocks = (response: AVStocksLongTermAdjustedResponse): response is StocksWeeklyAdjustedResponse => response !== undefined
-const isMonthlyStocks = (response: AVStocksLongTermResponse): response is StocksMonthlyResponse => response !== undefined
-const isMonthlyAdjustedStocks = (response: AVStocksLongTermAdjustedResponse): response is StocksMonthlyAdjustedResponse => response !== undefined
+const is1MinStocks = (response: AVStocksIntradayResponse): response is StocksIntradayResponse1Min => (response as StocksIntradayResponse1Min)["Time Series (1min)"] !== undefined
+const is5MinStocks = (response: AVStocksIntradayResponse): response is StocksIntradayResponse5Min => (response as StocksIntradayResponse5Min)["Time Series (5min)"] !== undefined
+const is15MinStocks = (response: AVStocksIntradayResponse): response is StocksIntradayResponse15Min => (response as StocksIntradayResponse15Min)["Time Series (15min)"] !== undefined
+const is30MinStocks = (response: AVStocksIntradayResponse): response is StocksIntradayResponse30Min => (response as StocksIntradayResponse30Min)["Time Series (30min)"] !== undefined
+const is60MinStocks = (response: AVStocksIntradayResponse): response is StocksIntradayResponse60Min => (response as StocksIntradayResponse60Min)["Time Series (60min)"] !== undefined
+const isDailyStocks = (response: AVStocksLongTermResponse): response is StocksDailyResponse => (response as StocksDailyResponse)["Time Series (Daily)"] !== undefined
+const isDailyAdjustedStocks = (response: AVStocksLongTermAdjustedResponse): response is StocksDailyAdjustedResponse => (response as StocksDailyAdjustedResponse)["Time Series (Daily)"] !== undefined
+const isWeeklyStocks = (response: AVStocksLongTermResponse): response is StocksWeeklyResponse => (response as StocksWeeklyResponse)["Weekly Time Series"] !== undefined
+const isWeeklyAdjustedStocks = (response: AVStocksLongTermAdjustedResponse): response is StocksWeeklyAdjustedResponse => (response as StocksWeeklyAdjustedResponse)["Weekly Adjusted Time Series"] !== undefined
+const isMonthlyStocks = (response: AVStocksLongTermResponse): response is StocksMonthlyResponse => (response as StocksMonthlyResponse)["Monthly Time Series"] !== undefined
+const isMonthlyAdjustedStocks = (response: AVStocksLongTermAdjustedResponse): response is StocksMonthlyAdjustedResponse => (response as StocksMonthlyAdjustedResponse)["Monthly Adjusted Time Series"] !== undefined
 
 
 export const convertStocksToData = (response: AVStocksResponse): AVStocksData => {
@@ -97,23 +97,23 @@ const convertStocksLongTermAdjustedData = (longTermAdjustedResponse: AVStocksLon
 
 const convert1MinStocks = (intradayResponse: StocksIntradayResponse1Min): StocksIntradayData1Min => ({
   metaData:               convertShortTermStocksMetaData(intradayResponse["Meta Data"]),
-  "Time Series (1min)":   loopConvertStocksOHLCVObj(intradayResponse["Time Series (1min)"])
+  timeSeries1min:         loopConvertStocksOHLCVObj(intradayResponse["Time Series (1min)"])
 })
 const convert5MinStocks = (intradayResponse: StocksIntradayResponse5Min): StocksIntradayData5Min => ({
   metaData:               convertShortTermStocksMetaData(intradayResponse["Meta Data"]),
-  "Time Series (5min)":   loopConvertStocksOHLCVObj(intradayResponse["Time Series (5min)"])
+  timeSeries5min:         loopConvertStocksOHLCVObj(intradayResponse["Time Series (5min)"])
 })
 const convert15MinStocks = (intradayResponse: StocksIntradayResponse15Min): StocksIntradayData15Min => ({
   metaData:               convertShortTermStocksMetaData(intradayResponse["Meta Data"]),
-  "Time Series (15min)":  loopConvertStocksOHLCVObj(intradayResponse["Time Series (15min)"])
+  timeSeries15min:        loopConvertStocksOHLCVObj(intradayResponse["Time Series (15min)"])
 })
 const convert30MinStocks = (intradayResponse: StocksIntradayResponse30Min): StocksIntradayData30Min => ({
   metaData:               convertShortTermStocksMetaData(intradayResponse["Meta Data"]),
-  "Time Series (30min)":  loopConvertStocksOHLCVObj(intradayResponse["Time Series (30min)"])
+  timeSeries30min:        loopConvertStocksOHLCVObj(intradayResponse["Time Series (30min)"])
 })
 const convert60MinStocks = (intradayResponse: StocksIntradayResponse60Min): StocksIntradayData60Min => ({
   metaData:               convertShortTermStocksMetaData(intradayResponse["Meta Data"]),
-  "Time Series (60min)":  loopConvertStocksOHLCVObj(intradayResponse["Time Series (60min)"])
+  timeSeries60min:        loopConvertStocksOHLCVObj(intradayResponse["Time Series (60min)"])
 })
 
 const convertShortTermStocksMetaData = (metaData: StocksIntradayMetaDataResponse): StocksIntradayMetaData => ({
@@ -137,8 +137,8 @@ const convertStocksOHLCV = (stocksOHLCV:  StocksOHLCVDataResponse): StocksOHLCVD
 })
 
 const convertDailyStocks = (response: StocksDailyResponse): StocksDailyData => ({
-  metaData:            convertStocksDailyMetaData(response["Meta Data"]),
-  timeSeriesDaily:  loopConvertStocksOHLCVObj(response["Time Series (Daily)"])
+  metaData:             convertStocksDailyMetaData(response["Meta Data"]),
+  timeSeriesDaily:      loopConvertStocksOHLCVObj(response["Time Series (Daily)"])
 })
 const convertStocksDailyMetaData = (metaData: StocksDailyMetaDataResponse): StocksDailyMetaData => ({
   the1Information:    metaData["1. Information"],
@@ -237,5 +237,5 @@ const convertBestMatch = (bestMatch: BestMatchResponse): BestMatchData => ({
 })
 
 const convertSearchData = (searchResponse: SearchResponse): SearchData => ({
-  bestMatches:          searchResponse.bestMatches.map(match => convertBestMatch(match))
+  bestMatches:          searchResponse.bestMatches.map(convertBestMatch)
 })

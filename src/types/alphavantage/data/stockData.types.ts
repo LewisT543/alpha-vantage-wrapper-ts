@@ -7,11 +7,11 @@ export type AVStocksData = AVStockIntradayData | AVStocksLongTermData | AVStocks
 export interface WithMetaDataIntraday { metaData: StocksIntradayMetaData; }
 export type StocksOHLCVDataObjects = { [key: string]: StocksOHLCVData };
 export type StocksOHLCVDailyAdjDataObjects = { [key: string]: StocksOHLCVDailyAdjustedData };
-export interface StocksIntradayData1Min extends WithMetaDataIntraday { "Time Series (1min)": StocksOHLCVDataObjects;}
-export interface StocksIntradayData5Min extends WithMetaDataIntraday { "Time Series (5min)": StocksOHLCVDataObjects;}
-export interface StocksIntradayData15Min extends WithMetaDataIntraday { "Time Series (15min)": StocksOHLCVDataObjects;}
-export interface StocksIntradayData30Min extends WithMetaDataIntraday { "Time Series (30min)": StocksOHLCVDataObjects;}
-export interface StocksIntradayData60Min extends WithMetaDataIntraday { "Time Series (60min)": StocksOHLCVDataObjects;}
+export interface StocksIntradayData1Min extends WithMetaDataIntraday { timeSeries1min: StocksOHLCVDataObjects;}
+export interface StocksIntradayData5Min extends WithMetaDataIntraday { timeSeries5min: StocksOHLCVDataObjects;}
+export interface StocksIntradayData15Min extends WithMetaDataIntraday { timeSeries15min: StocksOHLCVDataObjects;}
+export interface StocksIntradayData30Min extends WithMetaDataIntraday { timeSeries30min: StocksOHLCVDataObjects;}
+export interface StocksIntradayData60Min extends WithMetaDataIntraday { timeSeries60min: StocksOHLCVDataObjects;}
 
 export interface StocksIntradayMetaData {
   the1Information:   string;

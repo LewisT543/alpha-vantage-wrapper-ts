@@ -6,7 +6,7 @@ import {AVEconIndResponse} from "./econIndResponse.types";
 import {AVForexResponse} from "./forexResponse.types";
 import {AVStocksResponse} from "./stockResponse.types";
 
-export type AVResponse = AVIntelResponse | AVCommoditiesResponse | AVCryptoResponse | AVFundamentalsResponse | AVEconIndResponse | AVForexResponse | AVStocksResponse
+export type AVResponse = CurrencyExchangeResponse | AVIntelResponse | AVCommoditiesResponse | AVCryptoResponse | AVFundamentalsResponse | AVEconIndResponse | AVForexResponse | AVStocksResponse
 
 // Crypto And Forex shared endpoint response
 export interface CurrencyExchangeResponse { "Realtime Currency Exchange Rate": RealtimeCurrencyExchangeRateResponseData; }

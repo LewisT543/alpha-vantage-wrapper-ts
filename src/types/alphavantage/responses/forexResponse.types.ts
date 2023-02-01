@@ -1,9 +1,8 @@
-import {CurrencyExchangeResponse} from "./avResponse.types";
 import {AVTimeSeriesIntervalEnum} from "../../enums";
 
 export type AVForexLongTermResponse = ForexDailyResponse | ForexWeeklyResponse | ForexMonthlyResponse
 export type AVForexIntradayResponse = ForexIntradayResponse1Min | ForexIntradayResponse5Min | ForexIntradayResponse15Min | ForexIntradayResponse30Min | ForexIntradayResponse60Min
-export type AVForexResponse = CurrencyExchangeResponse | AVForexIntradayResponse | AVForexLongTermResponse
+export type AVForexResponse = AVForexIntradayResponse | AVForexLongTermResponse
 
 interface WithForexIntradayMetaData { "Meta Data": ForexIntradayMetaDataResponse; }
 export type ForexOHLCResponseObjects = { [key: string]: ForexOHLCResponse };
