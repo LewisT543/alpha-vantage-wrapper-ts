@@ -1,5 +1,5 @@
 import {TEST_DATA} from "../data/exampleData";
-import {convertAVResponseToData} from "../../avResponseToDataConverter";
+import {convertAVResponseToData} from "../../src/avResponseToDataConverter";
 
 
 describe("avConverter", () => {

@@ -1,4 +1,4 @@
-import {queryToAVUrl} from "../../queryToAvUrl";
+import {queryToAVUrl} from "../../src/queryToAvUrl";
 import {TEST_DATA} from "../data/exampleData";
 
 

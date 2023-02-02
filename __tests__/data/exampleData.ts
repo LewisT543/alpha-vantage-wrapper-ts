@@ -1,19 +1,19 @@
-import {BalanceSheetResponse} from "../../types/alphavantage/responses/fundamentalsResponse.types";
-import {StocksDailyAdjustedResponse} from "../../types/alphavantage/responses/stockResponse.types";
-import {StocksDailyAdjustedData} from "../../types/alphavantage/data/stockData.types";
-import {BalanceSheetData} from "../../types/alphavantage/data/fundamentalsData.types";
-import {NewsResponse} from "../../types/alphavantage/responses/alphaIntelResponse.types";
-import {NewsData} from "../../types/alphavantage/data/alphaIntelData.types";
-import {ForexIntradayResponse5Min} from "../../types/alphavantage/responses/forexResponse.types";
-import {ForexIntradayData5Min} from "../../types/alphavantage/data/forexData.types";
-import {CryptoDailyResponse} from "../../types/alphavantage/responses/cryptoResponse.types";
-import {CryptoDailyData} from "../../types/alphavantage/data/cryptoData.types";
-import {CommoditiesResponse} from "../../types/alphavantage/responses/commoditiesResponse.types";
-import {CommoditiesData} from "../../types/alphavantage/data/commoditiesData.types";
-import {CurrencyExchangeResponse} from "../../types/alphavantage/responses/avResponse.types";
-import {CurrencyExchangeData} from "../../types/alphavantage/data/avData.types";
-import {EconIndResponse} from "../../types/alphavantage/responses/econIndResponse.types";
-import {TimeSeriesDailyAdjustedQuery} from "../../types/alphavantage/queries/stockQueries.types";
+import {BalanceSheetResponse} from "../../src/types/alphavantage/responses/fundamentalsResponse.types";
+import {StocksDailyAdjustedResponse} from "../../src/types/alphavantage/responses/stockResponse.types";
+import {StocksDailyAdjustedData} from "../../src/types/alphavantage/data/stockData.types";
+import {BalanceSheetData} from "../../src/types/alphavantage/data/fundamentalsData.types";
+import {NewsResponse} from "../../src/types/alphavantage/responses/alphaIntelResponse.types";
+import {NewsData} from "../../src/types/alphavantage/data/alphaIntelData.types";
+import {ForexIntradayResponse5Min} from "../../src/types/alphavantage/responses/forexResponse.types";
+import {ForexIntradayData5Min} from "../../src/types/alphavantage/data/forexData.types";
+import {CryptoDailyResponse} from "../../src/types/alphavantage/responses/cryptoResponse.types";
+import {CryptoDailyData} from "../../src/types/alphavantage/data/cryptoData.types";
+import {CommoditiesResponse} from "../../src/types/alphavantage/responses/commoditiesResponse.types";
+import {CommoditiesData} from "../../src/types/alphavantage/data/commoditiesData.types";
+import {CurrencyExchangeResponse} from "../../src/types/alphavantage/responses/avResponse.types";
+import {CurrencyExchangeData} from "../../src/types/alphavantage/data/avData.types";
+import {EconIndResponse} from "../../src/types/alphavantage/responses/econIndResponse.types";
+import {TimeSeriesDailyAdjustedQuery} from "../../src/types/alphavantage/queries/stockQueries.types";
 import {
   AlphaVantageCommoditiesFn,
   AlphaVantageCryptoFn,
@@ -24,16 +24,16 @@ import {
   AlphaVantageIntelFnEnum,
   AlphaVantageStockFnEnum,
   AVTimeSeriesIntervalEnum
-} from "../../types/enums";
-import {AlphaIntelNewsQuery} from "../../types/alphavantage/queries/alphaIntelQueries.types";
-import {FundamentalsBalanceSheetQuery} from "../../types/alphavantage/queries/fundamentalsQueries.types";
-import {ForexIntradayQuery} from "../../types/alphavantage/queries/forexQueries.types";
-import {CryptoDailyQuery} from "../../types/alphavantage/queries/cryptoQueries.types";
-import {CommoditiesAluminiumQuery} from "../../types/alphavantage/queries/commoditiesQueries.types";
-import {EconIndCPIQuery} from "../../types/alphavantage/queries/econIndQueries.types";
-import {CurrencyExchangeQuery} from "../../types/alphavantage/queries/avQuery.types";
-import {getDateFromString} from "../../utils";
-import {DATE_FORMATS} from "../../types/constants";
+} from "../../src/types/enums";
+import {AlphaIntelNewsQuery} from "../../src/types/alphavantage/queries/alphaIntelQueries.types";
+import {FundamentalsBalanceSheetQuery} from "../../src/types/alphavantage/queries/fundamentalsQueries.types";
+import {ForexIntradayQuery} from "../../src/types/alphavantage/queries/forexQueries.types";
+import {CryptoDailyQuery} from "../../src/types/alphavantage/queries/cryptoQueries.types";
+import {CommoditiesAluminiumQuery} from "../../src/types/alphavantage/queries/commoditiesQueries.types";
+import {EconIndCPIQuery} from "../../src/types/alphavantage/queries/econIndQueries.types";
+import {CurrencyExchangeQuery} from "../../src/types/alphavantage/queries/avQuery.types";
+import {getDateFromString} from "../../src/utils";
+import {DATE_FORMATS} from "../../src/types/constants";
 
 const timeSeriesDailyAdjustedTestQuery: TimeSeriesDailyAdjustedQuery = {
   fn: AlphaVantageStockFnEnum.TIME_SERIES_DAILY_ADJUSTED,
