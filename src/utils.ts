@@ -15,10 +15,8 @@ export const isNumeric = (str: string) => {
     !isNaN(parseFloat(str))
 };
 
-export const getDateFromString = (str: string, dateFormat?: string): Date => {
-  if (dateFormat !== undefined) console.log(parse(str, dateFormat, new Date()))
-  return dateFormat !== undefined ? parse(str, dateFormat, new Date()) : new Date(Date.parse(str))
-}
+export const getDateFromString = (str: string, dateFormat?: string): Date =>
+  dateFormat !== undefined ? parse(str, dateFormat, new Date()) : new Date(Date.parse(str))
 
 export const convertPctStr = (pctStr: string): string => pctStr.replace("%", "")
 

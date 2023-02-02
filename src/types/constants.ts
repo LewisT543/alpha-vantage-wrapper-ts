@@ -8,5 +8,4 @@ export const DATE_FORMATS = {
   yearMonthDay: "yyyy-MM-dd",
   yearMonthDayTTime: "yyyyMMdd'T'HHmmSS",
   yearMonthDay_Time: "yyyy-MM-dd HH:mm:SS",
-
 }
