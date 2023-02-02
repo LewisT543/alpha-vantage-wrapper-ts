@@ -1,4 +1,4 @@
-import {TEST_DATA} from "../data/moreData";
+import {TEST_DATA} from "../data/exampleData";
 import {convertAVResponseToData} from "../../avResponseToDataConverter";
 
 

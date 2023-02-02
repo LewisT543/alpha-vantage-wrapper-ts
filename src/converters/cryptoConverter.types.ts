@@ -37,6 +37,7 @@ import {
   CryptoWeeklyData
 } from "../types/alphavantage/data/cryptoData.types";
 import {getDateFromString} from "../utils";
+import {DATE_FORMATS} from "../types/constants";
 
 export const isIntradayCrypto = (response: AVCryptoResponse): response is AVCryptoIntradayResponse => response["Meta Data"] !== undefined && (response as AVCryptoIntradayResponse)["Meta Data"]["1. Information"].includes("Crypto Intraday")
 export const isLongTermCrypto = (response: AVCryptoResponse): response is AVCryptoLongTermResponse => response["Meta Data"] !== undefined && (response as AVCryptoLongTermResponse)["Meta Data"]["1. Information"].includes("Digital Currency")
@@ -75,7 +76,7 @@ export const convertIntradayCryptoMetaData = (metaData: CryptoIntradayMetaDataRe
   the3DigitalCurrencyName:    metaData["3. Digital Currency Name"],
   the4MarketCode:             metaData["4. Market Code"],
   the5MarketName:             metaData["5. Market Name"],
-  the6LastRefreshed:          getDateFromString(metaData["6. Last Refreshed"]),
+  the6LastRefreshed:          getDateFromString(metaData["6. Last Refreshed"], DATE_FORMATS.yearMonthDay_Time),
   the7Interval:               metaData["7. Interval"],
   the8OutputSize:             metaData["8. Output Size"],
   the9TimeZone:               metaData["9. Time Zone"]
@@ -118,7 +119,7 @@ const convertCryptoLongTermMetaData = (metaData: CryptoLongtermMetaDataResponse)
   the3DigitalCurrencyName:   metaData["3. Digital Currency Name"],
   the4MarketCode:            metaData["4. Market Code"],
   the5MarketName:            metaData["5. Market Name"],
-  the6LastRefreshed:         getDateFromString(metaData["6. Last Refreshed"]),
+  the6LastRefreshed:         getDateFromString(metaData["6. Last Refreshed"], DATE_FORMATS.yearMonthDay_Time),
   the7TimeZone:              metaData["7. Time Zone"]
 })
 

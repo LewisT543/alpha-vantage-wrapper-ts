@@ -35,6 +35,7 @@ import {
   ForexWeeklyData
 } from "../types/alphavantage/data/forexData.types";
 import {getDateFromString} from "../utils";
+import {DATE_FORMATS} from "../types/constants";
 
 export const isIntradayForex = (response: AVForexResponse): response is AVForexIntradayResponse => response["Meta Data"] !== undefined && (response as AVForexIntradayResponse)["Meta Data"]["1. Information"].includes("FX Intraday")
 export const isLongTermForex = (response: AVForexResponse): response is AVForexLongTermResponse => response["Meta Data"] !== undefined && (response as AVForexLongTermResponse)["Meta Data"]["1. Information"].includes("Forex")
@@ -97,7 +98,7 @@ const convertForexIntradayMetaData = (metaData: ForexIntradayMetaDataResponse): 
   the1Information:    metaData["1. Information"],
   the2FromSymbol:     metaData["2. From Symbol"],
   the3ToSymbol:       metaData["3. To Symbol"],
-  the4LastRefreshed:  getDateFromString(metaData["4. Last Refreshed"]),
+  the4LastRefreshed:  getDateFromString(metaData["4. Last Refreshed"], DATE_FORMATS.yearMonthDay_Time),
   the5Interval:       metaData["5. Interval"],
   the6OutputSize:     metaData["6. Output Size"],
   the7TimeZone:       metaData["7. Time Zone"],
@@ -128,7 +129,7 @@ const convertForexDailyMetaData = (metaData: ForexDailyMetaDataResponse): ForexD
   the2FromSymbol:     metaData["2. From Symbol"],
   the3ToSymbol:       metaData["3. To Symbol"],
   the4OutputSize:     metaData["4. Output Size"],
-  the5LastRefreshed:  getDateFromString(metaData["5. Last Refreshed"]),
+  the5LastRefreshed:  getDateFromString(metaData["5. Last Refreshed"], DATE_FORMATS.yearMonthDay_Time),
   the6TimeZone:       metaData["6. Time Zone"],
 })
 
@@ -136,6 +137,6 @@ const convertForexLongTermMetaData = (metaData: ForexWeeklyAndMonthlyMetaDataRes
   the1Information:    metaData["1. Information"],
   the2FromSymbol:     metaData["2. From Symbol"],
   the3ToSymbol:       metaData["3. To Symbol"],
-  the4LastRefreshed:  getDateFromString(metaData["4. Last Refreshed"]),
+  the4LastRefreshed:  getDateFromString(metaData["4. Last Refreshed"], DATE_FORMATS.yearMonthDay_Time),
   the5TimeZone:       metaData["5. Time Zone"],
 })

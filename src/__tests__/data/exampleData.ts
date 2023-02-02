@@ -32,6 +32,8 @@ import {CryptoDailyQuery} from "../../types/alphavantage/queries/cryptoQueries.t
 import {CommoditiesAluminiumQuery} from "../../types/alphavantage/queries/commoditiesQueries.types";
 import {EconIndCPIQuery} from "../../types/alphavantage/queries/econIndQueries.types";
 import {CurrencyExchangeQuery} from "../../types/alphavantage/queries/avQuery.types";
+import {getDateFromString} from "../../utils";
+import {DATE_FORMATS} from "../../types/constants";
 
 const timeSeriesDailyAdjustedTestQuery: TimeSeriesDailyAdjustedQuery = {
   fn: AlphaVantageStockFnEnum.TIME_SERIES_DAILY_ADJUSTED,
@@ -171,7 +173,7 @@ const fundamentalsBalanceSheetData: BalanceSheetData = {
   symbol: 'IBM',
   annualReports: [
     {
-      fiscalDateEnding: new Date("2021-12-31T00:00:00.000Z"),
+      fiscalDateEnding: getDateFromString("2021-12-31", DATE_FORMATS.yearMonthDay),
       reportedCurrency: 'USD',
       totalAssets: 132001000000,
       totalCurrentAssets: 29539000000,
@@ -213,7 +215,7 @@ const fundamentalsBalanceSheetData: BalanceSheetData = {
   ],
   quarterlyReports: [
     {
-      fiscalDateEnding: new Date("2022-09-30T00:00:00.000Z"),
+      fiscalDateEnding: getDateFromString("2022-09-30", DATE_FORMATS.yearMonthDay),
       reportedCurrency: 'USD',
       totalAssets: 125850000000,
       totalCurrentAssets: 28999000000,
@@ -254,6 +256,7 @@ const fundamentalsBalanceSheetData: BalanceSheetData = {
     }
   ]
 }
+
 const stocksDailyAdjTimeSeries: StocksDailyAdjustedResponse = {
   "Meta Data": {
     "1. Information": "Daily Time Series with Splits and Dividend Events",
@@ -289,7 +292,7 @@ const stocksDailyAdjTimeSeriesData: StocksDailyAdjustedData = {
   metaData: {
     the1Information: 'Daily Time Series with Splits and Dividend Events',
     the2Symbol: 'IBM',
-    the3LastRefreshed: new Date("2023-02-01T00:00:00.000Z"),
+    the3LastRefreshed: getDateFromString("2023-02-01", DATE_FORMATS.yearMonthDay),
     the4OutputSize: 'Compact',
     the5TimeZone: 'US/Eastern'
   },
@@ -316,6 +319,7 @@ const stocksDailyAdjTimeSeriesData: StocksDailyAdjustedData = {
     }
   }
 }
+
 const alphaIntelNewsResponse: NewsResponse = {
   "items": "50",
   "sentiment_score_definition": "x <= -0.35: Bearish; -0.35 < x <= -0.15: Somewhat-Bearish; -0.15 < x < 0.15: Neutral; 0.15 <= x < 0.35: Somewhat_Bullish; x >= 0.35: Bullish",
@@ -581,7 +585,7 @@ const alphaIntelNewsData: NewsData = {
     {
       title: "This trader nailed two big market calls in 2022. She says investors are 'being paid to wait' so should steer clear of stocks for 2023.",
       url: 'https://www.marketwatch.com/story/this-trader-nailed-two-big-market-calls-in-2022-she-says-investors-are-being-paid-to-wait-so-should-steer-clear-of-stocks-for-2023-11675338394',
-      time_published: new Date('2023-02-02T11:46:00.000Z'),
+      time_published: getDateFromString('20230202T114600', DATE_FORMATS.yearMonthDayTTime),
       authors: ["Barbara Kollmeyer"],
       summary: `In our call of the day, LaDuc says cash is the place to be and that investors are "being paid to wait. They're getting very favorable 4.5% on their sitting cash." ...`,
       banner_image: 'https://images.mktw.net/im-715650?width=700&height=462',
@@ -826,6 +830,7 @@ const alphaIntelNewsData: NewsData = {
     }
   ]
 }
+
 const forexIntraday: ForexIntradayResponse5Min = {
   "Meta Data": {
     "1. Information": "FX Intraday (5min) Time Series",
@@ -874,7 +879,7 @@ const forexIntradayData: ForexIntradayData5Min = {
     "the1Information":"FX Intraday (5min) Time Series",
     "the2FromSymbol":"EUR",
     "the3ToSymbol":"USD",
-    "the4LastRefreshed": new Date("2023-02-02T14:30:00.000Z"),
+    "the4LastRefreshed": getDateFromString("2023-02-02 14:30:00", DATE_FORMATS.yearMonthDay_Time),
     "the5Interval":"5min",
     "the6OutputSize":"Compact",
     "the7TimeZone":"UTC"
@@ -912,6 +917,7 @@ const forexIntradayData: ForexIntradayData5Min = {
     }
   }
 }
+
 const cryptoDaily: CryptoDailyResponse = {
   "Meta Data": {
     "1. Information": "Daily Prices and Volumes for Digital Currency",
@@ -968,7 +974,7 @@ const cryptoDailyData: CryptoDailyData = {
     "the3DigitalCurrencyName":"Bitcoin",
     "the4MarketCode":"CNY",
     "the5MarketName":"Chinese Yuan",
-    "the6LastRefreshed": new Date("2023-02-02T00:00:00.000Z"),
+    "the6LastRefreshed": getDateFromString("2023-02-02 00:00:00", DATE_FORMATS.yearMonthDay_Time),
     "the7TimeZone":"UTC"
   },
   "timeSeriesDigitalCurrencyDaily":{
@@ -1010,6 +1016,7 @@ const cryptoDailyData: CryptoDailyData = {
     }
   }
 }
+
 const commoditiesAluminium: CommoditiesResponse = {
   "name": "Global Price of Aluminum",
   "interval": "monthly",
@@ -1051,61 +1058,36 @@ const commoditiesAluminiumData: CommoditiesData = {
   "unit":"dollar per metric ton",
   "data":[
     {
-      "date": new Date("2022-11-01T00:00:00.000Z"),
+      "date": getDateFromString("2022-11-01", DATE_FORMATS.yearMonthDay),
       "value":2350.71636363636
     },
     {
-      "date": new Date("2022-10-01T00:00:00.000Z"),
+      "date": getDateFromString("2022-10-01", DATE_FORMATS.yearMonthDay),
       "value":2255.53523809524
     },
     {
-      "date": new Date("2022-09-01T00:00:00.000Z"),
+      "date": getDateFromString("2022-09-01", DATE_FORMATS.yearMonthDay),
       "value":2224.75590909091
     },
     {
-      "date": new Date("2022-08-01T00:00:00.000Z"),
+      "date": getDateFromString("2022-08-01", DATE_FORMATS.yearMonthDay),
       "value":2433.91608695652
     },
     {
-      "date": new Date("2022-07-01T00:00:00.000Z"),
+      "date": getDateFromString("2022-07-01", DATE_FORMATS.yearMonthDay),
       "value":2408.42333333333
     },
     {
-      "date": new Date("2022-06-01T00:00:00.000Z"),
+      "date": getDateFromString("2022-06-01", DATE_FORMATS.yearMonthDay),
       "value":2575.66954545455
     },
     {
-      "date": new Date("2022-05-01T00:00:00.000Z"),
+      "date": getDateFromString("2022-05-01", DATE_FORMATS.yearMonthDay),
       "value":2839.50545454545
     }
   ]
 }
-const currencyExchange: CurrencyExchangeResponse = {
-  "Realtime Currency Exchange Rate": {
-    "1. From_Currency Code": "USD",
-    "2. From_Currency Name": "United States Dollar",
-    "3. To_Currency Code": "JPY",
-    "4. To_Currency Name": "Japanese Yen",
-    "5. Exchange Rate": "128.55100000",
-    "6. Last Refreshed": "2023-02-02 14:52:01",
-    "7. Time Zone": "UTC",
-    "8. Bid Price": "128.54980000",
-    "9. Ask Price": "128.55400000"
-  }
-}
-const currencyExchangeData: CurrencyExchangeData = {
-  "realtimeCurrencyExchangeRate": {
-    "the1FromCurrencyCode":"USD",
-    "the2FromCurrencyName":"United States Dollar",
-    "the3ToCurrencyCode":"JPY",
-    "the4ToCurrencyName":"Japanese Yen",
-    "the5ExchangeRate":128.551,
-    "the6LastRefreshed": new Date("2023-02-02T14:52:01.000Z"),
-    "the7TimeZone":"UTC",
-    "the8BidPrice":128.5498,
-    "the9AskPrice":128.554
-  }
-}
+
 const econIndCPI: EconIndResponse = {
   "name": "Consumer Price Index for all Urban Consumers",
   "interval": "monthly",
@@ -1139,26 +1121,53 @@ const econIndCPIData = {
   "unit":"index 1982-1984=100",
   "data":[
     {
-      "date": new Date("2022-12-01T00:00:00.000Z"),
+      "date": getDateFromString("2022-12-01", DATE_FORMATS.yearMonthDay),
       "value":296.797
     },
     {
-      "date": new Date("2022-11-01T00:00:00.000Z"),
+      "date": getDateFromString("2022-11-01", DATE_FORMATS.yearMonthDay),
       "value":297.711
     },
     {
-      "date": new Date("2022-10-01T00:00:00.000Z"),
+      "date": getDateFromString("2022-10-01", DATE_FORMATS.yearMonthDay),
       "value":298.012
     },
     {
-      "date": new Date("2022-09-01T00:00:00.000Z"),
+      "date": getDateFromString("2022-09-01", DATE_FORMATS.yearMonthDay),
       "value":296.808
     },
     {
-      "date": new Date("2022-08-01T00:00:00.000Z"),
+      "date": getDateFromString("2022-08-01", DATE_FORMATS.yearMonthDay),
       "value":296.171
     }
   ]
+}
+
+const currencyExchange: CurrencyExchangeResponse = {
+  "Realtime Currency Exchange Rate": {
+    "1. From_Currency Code": "USD",
+    "2. From_Currency Name": "United States Dollar",
+    "3. To_Currency Code": "JPY",
+    "4. To_Currency Name": "Japanese Yen",
+    "5. Exchange Rate": "128.55100000",
+    "6. Last Refreshed": "2023-02-02 14:52:01",
+    "7. Time Zone": "UTC",
+    "8. Bid Price": "128.54980000",
+    "9. Ask Price": "128.55400000"
+  }
+}
+const currencyExchangeData: CurrencyExchangeData = {
+  "realtimeCurrencyExchangeRate": {
+    "the1FromCurrencyCode":"USD",
+    "the2FromCurrencyName":"United States Dollar",
+    "the3ToCurrencyCode":"JPY",
+    "the4ToCurrencyName":"Japanese Yen",
+    "the5ExchangeRate":128.551,
+    "the6LastRefreshed": getDateFromString("2023-02-02 14:52:01", DATE_FORMATS.yearMonthDay_Time),
+    "the7TimeZone":"UTC",
+    "the8BidPrice":128.5498,
+    "the9AskPrice":128.554
+  }
 }
 
 export const TEST_DATA = [

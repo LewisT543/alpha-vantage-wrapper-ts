@@ -13,6 +13,7 @@ import {
   NewsTickerSentimentData,
   NewsTopicData, PortfolioRankingData, PortfoliosData, SinglePortfolioData
 } from "../types/alphavantage/data/alphaIntelData.types";
+import {DATE_FORMATS} from "../types/constants";
 
 export const isNewsIntel = (response: AVIntelResponse): response is NewsResponse => (response as NewsResponse).feed !== undefined
 export const isPortfolioIntel = (response: AVIntelResponse): response is PortfoliosResponse => (response as PortfoliosResponse).ranking !== undefined
@@ -38,7 +39,7 @@ const convertPortfoliosToData = (response: PortfoliosResponse): PortfoliosData =
 const convertFeed = (feedItem: NewsFeedResponse): NewsFeedData => ({
   title:                   feedItem.title,
   url:                     feedItem.url,
-  time_published:          getDateFromString(feedItem.time_published, "yyyyMMdd'T'HHmmSS"),
+  time_published:          getDateFromString(feedItem.time_published, DATE_FORMATS.yearMonthDayTTime),
   authors:                 feedItem.authors,
   summary:                 feedItem.summary,
   banner_image:            feedItem?.banner_image === undefined ? null : feedItem.banner_image,
@@ -66,9 +67,9 @@ const convertTickerSentiment = (tickerSentiment: NewsTickerSentiment): NewsTicke
 const convertPortfolioRaking = (ranking: PortfolioRanking): PortfolioRankingData => ({
   rank:                 Number(ranking.rank),
   portfolio:            ranking.portfolio.map(convertSinglePortfolio),
-  measurement_start:    getDateFromString(ranking.measurement_start, "yyyy-MM"),
+  measurement_start:    getDateFromString(ranking.measurement_start, DATE_FORMATS.yearMonth),
   start_value_usd:      Number(ranking.start_value_usd),
-  measurement_end:      getDateFromString(ranking.measurement_end, "yyyy-MM"),
+  measurement_end:      getDateFromString(ranking.measurement_end, DATE_FORMATS.yearMonth),
   end_value_usd:        Number(ranking.end_value_usd),
   percent_gain:         Number(ranking.percent_gain)
 })

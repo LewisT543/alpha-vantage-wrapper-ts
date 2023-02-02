@@ -16,6 +16,7 @@ import {
   IncomeStatementData,
   IncomeStatementReportData, QuarterlyEarningD
 } from "../types/alphavantage/data/fundamentalsData.types";
+import {DATE_FORMATS} from "../types/constants";
 
 export const isGeneralOverview = (response: AVFundamentalsResponse): response is GeneralOverviewResponse => (response as GeneralOverviewResponse).EPS !== undefined
 export const isIncomeStatementResponse = (response: AVFundamentalsResponse): response is IncomeStatementResponse => (response as IncomeStatementResponse).quarterlyReports !== undefined && (response as IncomeStatementResponse).quarterlyReports[0].grossProfit !== undefined
@@ -45,7 +46,7 @@ export const convertGeneralOverviewToData = (response: GeneralOverviewResponse):
   Industry:                   response.Industry,
   Address:                    response.Address,
   FiscalYearEnd:              response.FiscalYearEnd,
-  LatestQuarter:              getDateFromString(response.LatestQuarter),
+  LatestQuarter:              getDateFromString(response.LatestQuarter, DATE_FORMATS.yearMonthDay),
   MarketCapitalization:       Number(response.MarketCapitalization),
   EBITDA:                     Number(response.EBITDA),
   PERatio:                    Number(response.PERatio),
@@ -77,8 +78,8 @@ export const convertGeneralOverviewToData = (response: GeneralOverviewResponse):
   "50DayMovingAverage":       Number(response["50DayMovingAverage"]),
   "200DayMovingAverage":      Number(response["200DayMovingAverage"]),
   SharesOutstanding:          Number(response.SharesOutstanding),
-  DividendDate:               getDateFromString(response.DividendDate),
-  ExDividendDate:             getDateFromString(response.ExDividendDate),
+  DividendDate:               getDateFromString(response.DividendDate, DATE_FORMATS.yearMonthDay),
+  ExDividendDate:             getDateFromString(response.ExDividendDate, DATE_FORMATS.yearMonthDay),
 })
 
 export const convertIncomeStatementToData = (response: IncomeStatementResponse): IncomeStatementData => ({
@@ -88,7 +89,7 @@ export const convertIncomeStatementToData = (response: IncomeStatementResponse):
 })
 
 const convertIncomeStatementReports = (report: IncomeStatementReport): IncomeStatementReportData => ({
-  fiscalDateEnding:                  getDateFromString(report.fiscalDateEnding),
+  fiscalDateEnding:                  getDateFromString(report.fiscalDateEnding, DATE_FORMATS.yearMonthDay),
   reportedCurrency:                  report.reportedCurrency,
   grossProfit:                       Number(report.grossProfit),
   totalRevenue:                      Number(report.totalRevenue),
@@ -124,7 +125,7 @@ export const convertBalanceSheetToData = (response: BalanceSheetResponse): Balan
 })
 
 const convertBalanceSheetReports = (report: BalanceSheetReport): BalanceSheetReportData => ({
-  fiscalDateEnding:                       getDateFromString(report.fiscalDateEnding),
+  fiscalDateEnding:                       getDateFromString(report.fiscalDateEnding, DATE_FORMATS.yearMonthDay),
   reportedCurrency:                       report.reportedCurrency,
   totalAssets:                            Number(report.totalAssets),
   totalCurrentAssets:                     Number(report.totalCurrentAssets),
@@ -171,7 +172,7 @@ export const convertCashFlowToData = (response: CashFlowResponse): CashFlowData 
 })
 
 const convertCashFlowReports = (report: CashFlowReport): CashFlowReportData => ({
-  fiscalDateEnding:                                          getDateFromString(report.fiscalDateEnding),
+  fiscalDateEnding:                                          getDateFromString(report.fiscalDateEnding, DATE_FORMATS.yearMonthDay),
   reportedCurrency:                                          report.reportedCurrency,
   operatingCashflow:                                         Number(report.operatingCashflow),
   paymentsForOperatingActivities:                            Number(report.paymentsForOperatingActivities),
@@ -209,12 +210,12 @@ export const convertAnnualEarningsToData = (response: AnnualEarningsResponse): A
 })
 
 const convertAnnualEarningsReports = (annualEarnings: AnnualEarning): AnnualEarningD => ({
-  fiscalDateEnding: getDateFromString(annualEarnings.fiscalDateEnding),
+  fiscalDateEnding: getDateFromString(annualEarnings.fiscalDateEnding, DATE_FORMATS.yearMonthDay),
   reportedEPS:      Number(annualEarnings.reportedEPS)
 })
 const convertQuarterlyEarningsReports = (quarterlyEarning: QuarterlyEarning): QuarterlyEarningD => ({
-  fiscalDateEnding:   getDateFromString(quarterlyEarning.fiscalDateEnding),
-  reportedDate:       getDateFromString(quarterlyEarning.reportedDate),
+  fiscalDateEnding:   getDateFromString(quarterlyEarning.fiscalDateEnding, DATE_FORMATS.yearMonthDay),
+  reportedDate:       getDateFromString(quarterlyEarning.reportedDate, DATE_FORMATS.yearMonthDay),
   reportedEPS:        Number(quarterlyEarning.reportedEPS),
   estimatedEPS:       Number(quarterlyEarning.estimatedEPS),
   surprise:           Number(quarterlyEarning.surprise),

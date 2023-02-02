@@ -42,6 +42,7 @@ import {
   StocksWeeklyData
 } from "../types/alphavantage/data/stockData.types";
 import {convertPctStr, getDateFromString} from "../utils";
+import {DATE_FORMATS} from "../types/constants";
 
 export const isIntradayStocks = (response: AVStocksResponse): response is AVStocksIntradayResponse => (response as AVStocksIntradayResponse)["Meta Data"] !== undefined && (response as AVStocksIntradayResponse)["Meta Data"]["6. Time Zone"] !== undefined
 export const isLongTermStocks = (response: AVStocksResponse): response is AVStocksLongTermResponse => (response as AVStocksLongTermResponse)["Meta Data"] !== undefined && (response as AVStocksLongTermResponse)["Meta Data"]["1. Information"].includes(" Prices (open, high, low, close) and Volumes")
@@ -119,7 +120,7 @@ const convert60MinStocks = (intradayResponse: StocksIntradayResponse60Min): Stoc
 const convertShortTermStocksMetaData = (metaData: StocksIntradayMetaDataResponse): StocksIntradayMetaData => ({
   the1Information:    metaData["1. Information"],
   the2Symbol:         metaData["2. Symbol"],
-  the3LastRefreshed:  getDateFromString(metaData["3. Last Refreshed"]),
+  the3LastRefreshed:  getDateFromString(metaData["3. Last Refreshed"], DATE_FORMATS.yearMonthDay_Time),
   the4Interval:       metaData["4. Interval"],
   the5OutputSize:     metaData["5. Output Size"],
   the6TimeZone:       metaData["6. Time Zone"],
@@ -143,7 +144,7 @@ const convertDailyStocks = (response: StocksDailyResponse): StocksDailyData => (
 const convertStocksDailyMetaData = (metaData: StocksDailyMetaDataResponse): StocksDailyMetaData => ({
   the1Information:    metaData["1. Information"],
   the2Symbol:         metaData["2. Symbol"],
-  the3LastRefreshed:  getDateFromString(metaData["3. Last Refreshed"]),
+  the3LastRefreshed:  getDateFromString(metaData["3. Last Refreshed"], DATE_FORMATS.yearMonthDay),
   the4OutputSize:     metaData["4. Output Size"],
   the5TimeZone:       metaData["5. Time Zone"],
 })
@@ -176,7 +177,7 @@ const convertWeeklyStocks = (response: StocksWeeklyResponse): StocksWeeklyData =
 const convertStocksLongtermMetaData = (metaData: StocksLongtermMetaDataResponse): StocksLongtermMetaData => ({
   the1Information:    metaData["1. Information"],
   the2Symbol:         metaData["2. Symbol"],
-  the3LastRefreshed:  getDateFromString(metaData["3. Last Refreshed"]),
+  the3LastRefreshed:  getDateFromString(metaData["3. Last Refreshed"], DATE_FORMATS.yearMonthDay),
   the4TimeZone:       metaData["4. Time Zone"],
 })
 
@@ -218,7 +219,7 @@ const convertGlobalInnerData = (global: GlobalQuoteInnerResponse): GlobalQuoteIn
   the04Low:              Number(global["04. low"]),
   the05Price:            Number(global["05. price"]),
   the06Volume:           Number(global["06. volume"]),
-  the07LatestTradingDay: getDateFromString(global["07. latest trading day"]),
+  the07LatestTradingDay: getDateFromString(global["07. latest trading day"], DATE_FORMATS.yearMonthDay),
   the08PreviousClose:    Number(global["08. previous close"]),
   the09Change:           Number(global["09. change"]),
   the10ChangePercent:    Number(convertPctStr(global["10. change percent"])),
