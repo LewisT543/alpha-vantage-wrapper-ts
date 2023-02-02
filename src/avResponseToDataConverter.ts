@@ -76,7 +76,8 @@ const convertRealtimeCurrencyExchangeRate = (exchangeRate: RealtimeCurrencyExcha
 })
 
 const isIntelResponse = (response: AVResponse): response is AVIntelResponse =>
-  asAndIsResponseType<AVIntelResponse, NewsResponse>(response, isNewsIntel) || asAndIsResponseType<AVIntelResponse, PortfoliosResponse>(response, isPortfolioIntel)
+  asAndIsResponseType<AVIntelResponse, NewsResponse>(response, isNewsIntel) ||
+  asAndIsResponseType<AVIntelResponse, PortfoliosResponse>(response, isPortfolioIntel)
 
 const isCryptoResponse = (response: AVResponse): response is AVCryptoResponse =>
   asAndIsResponseType<AVCryptoResponse, AVCryptoIntradayResponse>(response, isIntradayCrypto) ||

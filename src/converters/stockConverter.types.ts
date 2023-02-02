@@ -43,10 +43,10 @@ import {
 } from "../types/alphavantage/data/stockData.types";
 import {convertPctStr, getDateFromString} from "../utils";
 
-
 export const isIntradayStocks = (response: AVStocksResponse): response is AVStocksIntradayResponse => (response as AVStocksIntradayResponse)["Meta Data"] !== undefined && (response as AVStocksIntradayResponse)["Meta Data"]["6. Time Zone"] !== undefined
 export const isLongTermStocks = (response: AVStocksResponse): response is AVStocksLongTermResponse => (response as AVStocksLongTermResponse)["Meta Data"] !== undefined && (response as AVStocksLongTermResponse)["Meta Data"]["1. Information"].includes(" Prices (open, high, low, close) and Volumes")
-export const isLongTermAdjustedStocks = (response: AVStocksResponse): response is AVStocksLongTermAdjustedResponse => (response as AVStocksLongTermAdjustedResponse)["Meta Data"] !== undefined && (response as AVStocksLongTermAdjustedResponse)["Meta Data"]["1. Information"].includes(" Adjusted Prices and Volumes")
+export const isLongTermAdjustedStocks = (response: AVStocksResponse): response is AVStocksLongTermAdjustedResponse => (response as AVStocksLongTermAdjustedResponse)["Meta Data"] !== undefined &&
+  ((response as AVStocksLongTermAdjustedResponse)["Meta Data"]["1. Information"].includes(" Adjusted") || (response as AVStocksLongTermAdjustedResponse)["Meta Data"]["1. Information"].includes(" with Splits and Dividend Events"))
 export const isGlobalQuote = (response: AVStocksResponse): response is GlobalQuoteResponse => response !== undefined && (response as GlobalQuoteResponse)["Global Quote"] !== undefined
 export const isSearch = (response: AVStocksResponse): response is SearchResponse => response !== undefined && (response as SearchResponse)["bestMatches"] !== undefined
 

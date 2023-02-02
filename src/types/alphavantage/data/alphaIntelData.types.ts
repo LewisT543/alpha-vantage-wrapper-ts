@@ -20,7 +20,7 @@ export interface NewsFeedData {
   source_domain:           string;
   topics:                  NewsTopicData[];
   overall_sentiment_score: number;
-  overall_sentiment_label: SentimentLabel;
+  overall_sentiment_label: string;
   ticker_sentiment:        NewsTickerSentimentData[];
 }
 
@@ -29,7 +29,7 @@ export interface NewsTickerSentimentData {
   ticker:                 string;
   relevance_score:        number;
   ticker_sentiment_score: number;
-  ticker_sentiment_label: SentimentLabel;
+  ticker_sentiment_label: string;
 }
 
 export interface NewsTopicData {

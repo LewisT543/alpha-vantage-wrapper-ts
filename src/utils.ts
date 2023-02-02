@@ -1,8 +1,8 @@
 // returns a new object with the values at each key mapped using mapFn(value)
-
 import {CryptoOHLCVResponseObjects} from "./types/alphavantage/responses/cryptoResponse.types";
 import {CryptoOHLCVDataObjects} from "./types/alphavantage/data/cryptoData.types";
 import {AVResponse} from "./types/alphavantage/responses/avResponse.types";
+import {format, parse} from "date-fns";
 
 export const objectMap = (obj: any, fn: any) =>
   Object.entries(obj).map(
@@ -15,7 +15,11 @@ export const isNumeric = (str: string) => {
     !isNaN(parseFloat(str))
 };
 
-export const getDateFromString = (str: string): Date => new Date(Date.parse(str))
+export const getDateFromString = (str: string, dateFormat?: string): Date => {
+  if (dateFormat !== undefined) console.log(parse(str, dateFormat, new Date()))
+  return dateFormat !== undefined ? parse(str, dateFormat, new Date()) : new Date(Date.parse(str))
+}
+
 export const convertPctStr = (pctStr: string): string => pctStr.replace("%", "")
 
 export const isPresentObject = <T>(arg: T): arg is T => arg && Object.keys(arg).length > 0

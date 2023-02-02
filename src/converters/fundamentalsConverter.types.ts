@@ -18,9 +18,9 @@ import {
 } from "../types/alphavantage/data/fundamentalsData.types";
 
 export const isGeneralOverview = (response: AVFundamentalsResponse): response is GeneralOverviewResponse => (response as GeneralOverviewResponse).EPS !== undefined
-export const isIncomeStatementResponse = (response: AVFundamentalsResponse): response is IncomeStatementResponse => (response as IncomeStatementResponse).quarterlyReports[0].grossProfit !== undefined
-export const isBalanceSheetResponse = (response: AVFundamentalsResponse): response is BalanceSheetResponse => (response as BalanceSheetResponse).annualReports[0].goodwill !== undefined
-export const isCashFlowResponse = (response: AVFundamentalsResponse): response is CashFlowResponse => (response as CashFlowResponse).annualReports[0].changeInCashAndCashEquivalents !== undefined
+export const isIncomeStatementResponse = (response: AVFundamentalsResponse): response is IncomeStatementResponse => (response as IncomeStatementResponse).quarterlyReports !== undefined && (response as IncomeStatementResponse).quarterlyReports[0].grossProfit !== undefined
+export const isBalanceSheetResponse = (response: AVFundamentalsResponse): response is BalanceSheetResponse => (response as BalanceSheetResponse).annualReports !== undefined && (response as BalanceSheetResponse).annualReports[0].goodwill !== undefined
+export const isCashFlowResponse = (response: AVFundamentalsResponse): response is CashFlowResponse => (response as CashFlowResponse).annualReports !== undefined && (response as CashFlowResponse).annualReports[0].changeInCashAndCashEquivalents !== undefined
 export const isAnnualEarningsResponse = (response: AVFundamentalsResponse): response is AnnualEarningsResponse => (response as AnnualEarningsResponse).annualEarnings !== undefined
 
 export const convertFundamentalsToData = (response: AVFundamentalsResponse): AVFundamentalsData => {

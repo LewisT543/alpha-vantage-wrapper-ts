@@ -1,10 +1,8 @@
-import {AVCommoditiesIntervalEnum} from "../../enums";
-
 export type AVCommoditiesResponse = CommoditiesResponse
 
 export interface CommoditiesResponse {
   name:     string;
-  interval: AVCommoditiesIntervalEnum;
+  interval: string;
   unit:     string;
   data:     CommoditiesResponseDatum[];
 }

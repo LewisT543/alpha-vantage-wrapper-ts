@@ -17,7 +17,7 @@ export interface ForexIntradayMetaDataResponse {
   "2. From Symbol":    string;
   "3. To Symbol":      string;
   "4. Last Refreshed": string;
-  "5. Interval":       AVTimeSeriesIntervalEnum;
+  "5. Interval":       string;
   "6. Output Size":    string;
   "7. Time Zone":      string;
 }

@@ -38,8 +38,8 @@ import {
 } from "../types/alphavantage/data/cryptoData.types";
 import {getDateFromString} from "../utils";
 
-export const isIntradayCrypto = (response: AVCryptoResponse): response is AVCryptoIntradayResponse => response["Meta Data"] !== undefined && (response as AVCryptoIntradayResponse)["Meta Data"]["9. Time Zone"] !== undefined
-export const isLongTermCrypto = (response: AVCryptoResponse): response is AVCryptoLongTermResponse => response["Meta Data"] !== undefined && (response as AVCryptoLongTermResponse)["Meta Data"]["7. Time Zone"] !== undefined
+export const isIntradayCrypto = (response: AVCryptoResponse): response is AVCryptoIntradayResponse => response["Meta Data"] !== undefined && (response as AVCryptoIntradayResponse)["Meta Data"]["1. Information"].includes("Crypto Intraday")
+export const isLongTermCrypto = (response: AVCryptoResponse): response is AVCryptoLongTermResponse => response["Meta Data"] !== undefined && (response as AVCryptoLongTermResponse)["Meta Data"]["1. Information"].includes("Digital Currency")
 export const is1MinCrypto = (response: AVCryptoIntradayResponse): response is CryptoIntradayResponse1Min => (response as CryptoIntradayResponse1Min)["Time Series Crypto (1min)"] !== undefined
 export const is5MinCrypto = (response: AVCryptoIntradayResponse): response is CryptoIntradayResponse5Min => (response as CryptoIntradayResponse5Min)["Time Series Crypto (5min)"] !== undefined
 export const is15MinCrypto = (response: AVCryptoIntradayResponse): response is CryptoIntradayResponse15Min => (response as CryptoIntradayResponse15Min)["Time Series Crypto (15min)"] !== undefined

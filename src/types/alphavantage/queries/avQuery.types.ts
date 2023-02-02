@@ -1,4 +1,4 @@
-import {AlphaVantageFn} from "../../enums";
+import {AlphaVantageCryptoFn, AlphaVantageExchangeFn, AlphaVantageFn} from "../../enums";
 import {AVStocksQuery} from "./stockQueries.types";
 import {AVIntelQuery} from "./alphaIntelQueries.types";
 import {AVFundamentalsQuery} from "./fundamentalsQueries.types";
@@ -19,4 +19,10 @@ export interface AlphaVantageQuery {
   apiKey: string
 }
 
-export type AVQuery = AVStocksQuery | AVIntelQuery | AVFundamentalsQuery | AVForexQuery | AVCryptoQuery | AVCommoditiesQuery | AVEconIndQuery
+export interface CurrencyExchangeQuery extends AlphaVantageQuery {
+  fn: AlphaVantageExchangeFn.CURRENCY_EXCHANGE_RATE;
+  fromCurrency: string;
+  toCurrency: string;
+}
+
+export type AVQuery = CurrencyExchangeQuery | AVStocksQuery | AVIntelQuery | AVFundamentalsQuery | AVForexQuery | AVCryptoQuery | AVCommoditiesQuery | AVEconIndQuery

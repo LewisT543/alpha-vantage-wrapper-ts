@@ -36,8 +36,8 @@ import {
 } from "../types/alphavantage/data/forexData.types";
 import {getDateFromString} from "../utils";
 
-export const isIntradayForex = (response: AVForexResponse): response is AVForexIntradayResponse => response["Meta Data"] !== undefined && (response as AVForexIntradayResponse)["Meta Data"]["7. Time Zone"] !== undefined
-export const isLongTermForex = (response: AVForexResponse): response is AVForexLongTermResponse => response["Meta Data"] !== undefined && (response as AVForexLongTermResponse)["Meta Data"]["3. To Symbol"] !== undefined
+export const isIntradayForex = (response: AVForexResponse): response is AVForexIntradayResponse => response["Meta Data"] !== undefined && (response as AVForexIntradayResponse)["Meta Data"]["1. Information"].includes("FX Intraday")
+export const isLongTermForex = (response: AVForexResponse): response is AVForexLongTermResponse => response["Meta Data"] !== undefined && (response as AVForexLongTermResponse)["Meta Data"]["1. Information"].includes("Forex")
 
 export const is1MinForex = (response: AVForexIntradayResponse): response is ForexIntradayResponse1Min => (response as ForexIntradayResponse1Min)["Time Series FX (1min)"] !== undefined
 export const is5MinForex = (response: AVForexIntradayResponse): response is ForexIntradayResponse5Min => (response as ForexIntradayResponse5Min)["Time Series FX (5min)"] !== undefined

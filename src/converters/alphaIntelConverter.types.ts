@@ -27,7 +27,7 @@ const convertNewsToData = (response: NewsResponse): NewsData => ({
   items:                      Number(response.items),
   sentiment_score_definition: response.sentiment_score_definition,
   relevance_score_definition: response.relevance_score_definition,
-  feed:                       response.feed?.map(convertFeed)
+  feed:                       response.feed.map(convertFeed)
 })
 
 const convertPortfoliosToData = (response: PortfoliosResponse): PortfoliosData => ({
@@ -38,7 +38,7 @@ const convertPortfoliosToData = (response: PortfoliosResponse): PortfoliosData =
 const convertFeed = (feedItem: NewsFeedResponse): NewsFeedData => ({
   title:                   feedItem.title,
   url:                     feedItem.url,
-  time_published:          getDateFromString(feedItem.time_published),
+  time_published:          getDateFromString(feedItem.time_published, "yyyyMMdd'T'HHmmSS"),
   authors:                 feedItem.authors,
   summary:                 feedItem.summary,
   banner_image:            feedItem?.banner_image === undefined ? null : feedItem.banner_image,
@@ -66,9 +66,9 @@ const convertTickerSentiment = (tickerSentiment: NewsTickerSentiment): NewsTicke
 const convertPortfolioRaking = (ranking: PortfolioRanking): PortfolioRankingData => ({
   rank:                 Number(ranking.rank),
   portfolio:            ranking.portfolio.map(convertSinglePortfolio),
-  measurement_start:    getDateFromString(ranking.measurement_start),
+  measurement_start:    getDateFromString(ranking.measurement_start, "yyyy-MM"),
   start_value_usd:      Number(ranking.start_value_usd),
-  measurement_end:      getDateFromString(ranking.measurement_end),
+  measurement_end:      getDateFromString(ranking.measurement_end, "yyyy-MM"),
   end_value_usd:        Number(ranking.end_value_usd),
   percent_gain:         Number(ranking.percent_gain)
 })

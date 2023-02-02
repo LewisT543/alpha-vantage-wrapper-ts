@@ -1,11 +1,11 @@
 import {queryToAVUrl} from "../../queryToAvUrl";
-import {TEST_QUERIES} from "../data/exampleQueries";
+import {TEST_DATA} from "../data/moreData";
 
 
 describe('urlBuilder should correctly form urls from queries', () => {
-  TEST_QUERIES.forEach((testQuery) => {
-    test(`${testQuery.name} | ${testQuery.data.query.fn}`, () => {
-      expect(queryToAVUrl(testQuery.data.query)).toBe(testQuery.data.output)
+  TEST_DATA.forEach((testQuery) => {
+    test(`${testQuery.name} | ${testQuery.qAndUrl.query.fn}`, () => {
+      expect(queryToAVUrl(testQuery.qAndUrl.query)).toBe(testQuery.qAndUrl.url)
     })
   })
 })

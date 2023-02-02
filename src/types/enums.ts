@@ -104,18 +104,19 @@ export enum AlphaVantageFundamentalsFnEnum {
   IPO_CALENDAR = 'IPO_CALENDAR',
 }
 export enum AlphaVantageForexFn {
-  CURRENCY_EXCHANGE_RATE = 'CURRENCY_EXCHANGE_RATE', //HERE
   FX_INTRADAY = 'FX_INTRADAY',
   FX_DAILY = 'FX_DAILY',
   FX_WEEKLY = 'FX_WEEKLY',
   FX_MONTHLY = 'FX_MONTHLY',
+}
+export enum AlphaVantageExchangeFn {
+  CURRENCY_EXCHANGE_RATE = 'CURRENCY_EXCHANGE_RATE'
 }
 export enum AlphaVantageCryptoFn {
   CRYPTO_INTRADAY = 'CRYPTO_INTRADAY',
   DIGITAL_CURRENCY_DAILY = 'DIGITAL_CURRENCY_DAILY',
   DIGITAL_CURRENCY_WEEKLY = 'DIGITAL_CURRENCY_WEEKLY',
   DIGITAL_CURRENCY_MONTHLY = 'DIGITAL_CURRENCY_MONTHLY',
-  CURRENCY_EXCHANGE_RATE = 'CURRENCY_EXCHANGE_RATE',
 }
 
 export enum AlphaVantageCommoditiesFn {
@@ -144,5 +145,5 @@ export enum AlphaVantageEconIndsEnum {
   NONFARM_PAYROLL = 'NONFARM_PAYROLL',
 }
 
-export type AlphaVantageFn = AlphaVantageStockFnEnum | AlphaVantageIntelFnEnum | AlphaVantageFundamentalsFnEnum
+export type AlphaVantageFn = AlphaVantageExchangeFn | AlphaVantageStockFnEnum | AlphaVantageIntelFnEnum | AlphaVantageFundamentalsFnEnum
   | AlphaVantageForexFn | AlphaVantageCryptoFn | AlphaVantageCommoditiesFn | AlphaVantageEconIndsEnum

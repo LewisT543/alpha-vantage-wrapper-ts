@@ -1,11 +1,12 @@
-import {TEST_DATA_AND_RESPONSES} from "../data/moreData";
+import {TEST_DATA} from "../data/moreData";
 import {convertAVResponseToData} from "../../avResponseToDataConverter";
 
 
 describe("avConverter", () => {
-  TEST_DATA_AND_RESPONSES.forEach((nameAnd) => {
+  TEST_DATA.forEach((nameAnd) => {
     test(`${nameAnd.name}`, () => {
-      expect(convertAVResponseToData(nameAnd.rAndD.response)).toMatchObject(nameAnd.rAndD.data)
+      console.log(JSON.stringify(convertAVResponseToData(nameAnd.rAndD.response)))
+      expect(convertAVResponseToData(nameAnd.rAndD.response)).toStrictEqual(nameAnd.rAndD.data)
     })
   })
 })

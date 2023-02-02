@@ -6,7 +6,6 @@ export interface ForexBaseQuery extends AlphaVantageQuery {
   fromCurrency: string;
   toCurrency: string;
 }
-export interface ForexCurrencyExchangeQuery extends AlphaVantageQuery { fn: AlphaVantageForexFn.CURRENCY_EXCHANGE_RATE; }
 export interface ForexIntradayQuery extends ForexBaseQuery, WithAVOutputSize {
   fn: AlphaVantageForexFn.FX_INTRADAY;
   interval: AVTimeSeriesIntervalEnum;
@@ -15,4 +14,4 @@ export interface ForexDailyQuery extends ForexBaseQuery, WithAVOutputSize { fn: 
 export interface ForexWeeklyQuery extends ForexBaseQuery, WithAVOutputSize { fn: AlphaVantageForexFn.FX_WEEKLY; }
 export interface ForexMonthlyQuery extends ForexBaseQuery, WithAVOutputSize { fn: AlphaVantageForexFn.FX_MONTHLY; }
 
-export type AVForexQuery = ForexCurrencyExchangeQuery | ForexIntradayQuery | ForexDailyQuery | ForexWeeklyQuery | ForexMonthlyQuery
+export type AVForexQuery = ForexIntradayQuery | ForexDailyQuery | ForexWeeklyQuery | ForexMonthlyQuery

@@ -4,7 +4,7 @@ export type AVCommoditiesData = CommoditiesData
 
 export interface CommoditiesData {
   name:     string;
-  interval: AVCommoditiesIntervalEnum;
+  interval: string;
   unit:     string;
   data:     CommoditiesDataDatum[];
 }
