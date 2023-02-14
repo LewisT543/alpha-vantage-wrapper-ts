@@ -2,7 +2,7 @@
 import {CryptoOHLCVResponseObjects} from "./types/alphavantage/responses/cryptoResponse.types";
 import {CryptoOHLCVDataObjects} from "./types/alphavantage/data/cryptoData.types";
 import {AVResponse} from "./types/alphavantage/responses/avResponse.types";
-import {format, parse} from "date-fns";
+import {parse} from "date-fns";
 
 export const objectMap = (obj: any, fn: any) =>
   Object.entries(obj).map(
